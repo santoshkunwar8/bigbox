@@ -1,0 +1,119 @@
+.setting {
+  width: 100%;
+}
+.setting_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.setting_text_input,
+.collaborator_select {
+  color: black;
+  width: 250px;
+  height: 45px;
+  font-size: 12px;
+  letter-spacing: 1px;
+  outline: none;
+  border-radius: 4px;
+  color: orangered;
+  background-color: transparent;
+  border: 2px solid orangered;
+  padding: 0 10px;
+}
+.setting_item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.setting_item p {
+  color: gray;
+  font-size: 14px;
+}
+
+.setting_info_text {
+  letter-spacing: 1px;
+  font-size: 11px !important;
+  color: rgba(255, 21, 21, 0.527) !important;
+}
+
+/* collaborator img */
+
+.collaborator_img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.access_time_box_item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.collaborator_main_info_box{
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+    flex: 1;
+}
+
+.collaborator_name {
+  color: orangered !important;
+  letter-spacing: 1px;
+}
+.collaborator_email {
+  font-size: 8px;
+  color: gray;
+  letter-spacing: 1px;
+}
+.collaborator_details {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+.access_time_span_box {
+  display: flex;
+  flex-direction: column-reverse;   ;
+  gap: 0;
+  flex: 1;
+}
+.access_time_box_item {
+  height: 60px;
+  align-items: flex-end;
+  border-bottom: 0.4px solid rgba(68, 67, 67, 0.384);
+  padding: 15px 0;
+
+}
+.access_time_box_item p,
+.access_time_box_item span {
+  color: gray;
+  font-size: 10px !important;
+}
+
+.change_access_time_box {
+  display: flex;
+  gap: 5px;
+}
+.change_access_time_box div {
+  color: gray;
+  font-size: 11px;
+  background-color: #151515;
+  display: inline;
+  cursor: pointer;
+  width: fit-content;
+  align-items: start;
+  padding: 0 10px;
+}
+.prev_access_time_box{
+    display: flex;
+    gap: 5px;
+
+}
+/* remove_collaborator_btn */
+
+.remove_collaborator_btn {
+  height: 28px;
+  background-color: rgba(255, 0, 0, 0.596);
+  font-size: 9px;
+  margin-left: 2rem;
+}

@@ -1,0 +1,48 @@
+.room {
+  flex: 1;
+  min-width: 220px;
+  background-color: #21213e3d;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+.imageWrapper {
+  height: 120px;
+  width: 100%;
+}
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.room_details {
+  padding: 10px 2px;
+  display: flex ;
+  flex-direction: column  ;
+  gap: 0.4rem;
+  font-size: 12px;
+}
+.room_name {
+  font-size: 15px;
+  font-weight: 500;
+ color: gray;
+  letter-spacing: 1px;
+}
+.updatedTime {
+  display: flex;
+  align-items: center;
+}
+.details_top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.updatedTime p,
+.updatedTime span,
+.size {
+  color: gray;
+
+  letter-spacing: 1px;
+  font-size: 11px;
+}

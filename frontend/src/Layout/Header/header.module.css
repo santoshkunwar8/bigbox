@@ -1,0 +1,27 @@
+.roomHeader {
+  display: flex;
+  margin-bottom: 2rem;
+  justify-content: space-between;
+}
+.roomHeader h2 {
+  color:#ffffff;
+  letter-spacing: 1.3px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", sans-serif;
+}
+/* header */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header img {
+  height: 30px;
+  border-radius: 50%;
+}
+.header_right_box{
+  display: flex;
+  gap: 1rem;
+}

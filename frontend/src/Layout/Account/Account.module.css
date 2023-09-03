@@ -1,0 +1,226 @@
+.Account_box {
+  width: 100%;
+}
+.user_profile_img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.account_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+.account_personal_details {
+  /* box-shadow: rgba(255, 23, 23, 0.2) 0px 7px 29px 0px; */
+  background-color: #1d1d1d;
+  border-radius: 15px;
+  padding: 2rem 1rem;
+  display: flex;
+  gap: 1rem;
+}
+.account_primary_details_box {
+  display: flex;
+  gap: 1rem;
+}
+.account_primary_details_box p,
+.account_primary_details_box div {
+  color: gray;
+  font-size: 14px;
+}
+.star_box,
+.room_details_box,
+.connectd_user {
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
+  gap: 5px;
+}
+.star_box p,
+.room_details_box p,
+.connectd_user p {
+  font-size: 12px;
+}
+/* primary_details */
+
+.primary_details {
+  display: flex;
+  flex-direction: column;
+}
+.user_description {
+  font-size: 12px !important;
+  margin: 1rem 0;
+  letter-spacing: 1px !important;
+}
+
+.primary_details p:nth-child(1) {
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.primary_details p:nth-child(2) {
+  font-size: 10px;
+}
+.room_type_info_box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+.room_main_text {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 15px;
+  color: gray;
+
+  margin: 1rem 0;
+  margin-bottom: 0.3rem;
+}
+.room_type_info_box p {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.global_room {
+  color: rgb(0, 212, 0) !important;
+}
+.private_room {
+  color: rgb(0, 119, 255) !important;
+}
+/* secondary_details */
+.room_list {
+  padding: 2rem 0;
+}
+.secondary_details_container {
+  padding: 2rem;
+  background-color: #1d1d1d;
+  border-radius: 19px;
+  /* box-shadow: rgba(255, 23, 23, 0.2) 0px 7px 29px 0px; */
+}
+.account_section_header {
+  height: 60px;
+  display: flex;
+  gap: 0.6rem;
+  font-size: 1rem;
+  align-items: center;
+}
+.account_section_header h2 {
+  letter-spacing: 1px;
+  color: orangered;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+}
+.room_item {
+  padding: 10px 0;
+  padding-bottom: 4px;
+  display: flex;
+  gap: 6px;
+  height: 60px;
+  align-items: flex-end;
+  cursor: pointer;
+  border-bottom: 0.1px solid rgba(65, 64, 64, 0.445);
+}
+.room_item p {
+  color: gray;
+}
+.updated {
+  display: flex;
+  flex: 1;
+}
+.updated p,
+.updated span {
+  font-size: 11px;
+  color: gray;
+}
+.user_connected {
+  flex: 1;
+}
+.user_connected span {
+  font-size: 11px;
+  color: gray;
+}
+.room_title_box {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.room_title_box img {
+  padding-top: 4px;
+}
+.room_title {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.room_type {
+  font-size: 10px !important;
+  color: gray;
+}
+.room_name {
+  font-size: 15px !important;
+}
+.room_name {
+  color: rgb(255, 68, 0) !important;
+  font-size: 12px !important;
+}
+/* friends_item */
+.friends_main_text {
+  color: gray;
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  text-align: left;
+}
+
+.friends_list {
+  margin: 2rem 0;
+}
+
+.friends_item {
+  display: flex;
+  align-items: center;
+  padding: 20px 0;
+  gap: 1rem;
+  cursor: pointer;
+  height: 62px;
+  border-bottom: 0.1px solid rgba(59, 58, 58, 0.397);
+}
+.friends_item img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid orangered;
+  padding: 3px;
+}
+.friends_item p,
+.friends_item span {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.user_name {
+  color: orangered;
+}
+.user_email {
+  color: gray;
+  letter-spacing: 1px;
+  font-size: 10px !important;
+}
+.user_primary_details {
+  display: flex;
+  flex-direction: column;
+}
+.friends_btn {
+  background-color: var(--primary_color);
+  height: 31px;
+  border-radius: 3px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: white;
+  margin-left: auto;
+  cursor: pointer;
+}

@@ -1,0 +1,54 @@
+.navbar {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  padding: 0 1.4rem;
+}
+.navLeft {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  flex: 1;
+  gap: 2rem;
+}
+.left_otherItems {
+  flex: 5.5;
+}
+.navRight {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.navBtn {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 10px;
+  background: var(--primary_color);
+}
+.appName {
+  color: var(--primary_color);
+  font-size: 1.7rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  flex: 6.5;
+  font-family: "Space Grotesk", sans-serif;
+}
+.activeRoom {
+  border: 2px solid var(--primary_color);
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 5px;
+  border-radius: 3px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  color: var(--primary_color);
+  cursor: pointer;
+  gap: 10px;
+  width: 110px !important;
+}

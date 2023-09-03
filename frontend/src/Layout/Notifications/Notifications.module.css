@@ -1,0 +1,4 @@
+.notificationWrapper {
+  display: flex;
+  flex-direction: column;
+}

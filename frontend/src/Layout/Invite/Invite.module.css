@@ -1,0 +1,65 @@
+.invitation_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.room_select,
+option,
+.user_search_input,
+.access_time {
+  color: black;
+  width: 350px;
+  height: 50px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  outline: none;
+  border-radius: 4px;
+  color: orangered;
+  background-color: transparent;
+  border: 2px solid orangered;
+  padding: 0 10px;
+}
+.user_search_input::placeholder,
+.access_time::placeholder {
+  font-size: 13px;
+}
+option {
+  outline: none;
+  border: none;
+  height: 40px;
+  color: gray;
+  background-color: black;
+}
+.invitation_item p {
+  color: gray;
+  font-size: 14px;
+}
+.invitation_item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+/* invitation_calender */
+.invitation_calender {
+  width: 50% !important;
+  background-color: transparent !important;
+  color: black;
+  border: 1px solid orangered;
+}
+.invite_bottom_btns {
+  display: flex;
+  gap: 2rem;
+  width: 350px;
+
+  justify-content: flex-end;
+}
+.invite_bottom_btns button {
+  border-radius: 3px;
+  min-width: 80px;
+}
+.inviteBtn {
+  background-color: var(--primary_color);
+}
+.cancelBtn {
+  border: 2px solid orangered;
+}

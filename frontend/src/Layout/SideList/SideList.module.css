@@ -1,0 +1,30 @@
+.sideList {
+  /* border-right: 2px solid rgb(43, 42, 42); */
+  flex: 3.5;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+}
+.sideItem {
+  padding-left: 1rem;
+  display: flex;
+  cursor: pointer;
+  gap: 1rem;
+  align-items: center;
+  font-size: 14px;
+  height: 60px;
+  /* border-bottom: 0.1px solid rgb(43, 42, 42); */
+}
+.sideItem:hover {
+  background-color: rgba(44, 44, 44, 0.137);
+}
+.sideItem p {
+  color: gray;
+  letter-spacing: 0.7px;
+}
+.sideItem img {
+  width: 30px;
+}
+.sideItem_profileImg {
+  border-radius: 50%;
+}
