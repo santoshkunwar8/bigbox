@@ -1,30 +1,79 @@
-const mongoose = require("mongoose")
+const UserModel = require("../../models/userModel/UserModel")
 
-const UserSchema = mongoose.Schema({
-    username:{
-        type:String,
-        required:true,
-        unique:true,
-    },
-    email:{
-        type:String,
-        required:true,
-        unique:true
-    },
-    about:{
-        type:String,
-    },
-    country:{
-        type:String,
-    },
-    password:{
-        type:String,
-    },
-    image:{
-        type:String,
+
+
+class UserController{
+
+
+    // add room 
+        async createUser(req,res){
+        try {
+
+            let newUser  =    await UserModel.create(req.body);
+          
+            return res.status(200).json({message:newUser,success:true});
+
+
+        } catch (error) {
+            next(error)
+        }
+        }
+
+        async getUser(req,res){
+
+        const query = req.query;
+
+        
+
+        try {
+            const users = await UserModel.find({...query})
+            return res.status(200).json({message:users,success:true})
+        } catch (error) {
+            next(error)
+        }
+        }
+
+
+        // update room 
+
+        async updateUser(req,res){
+
+        const {id} = req.params;
+
+        
+
+        try {
+            let  updatedUser = await UserModel.findByIdAndUpdate(id,
+                {
+                   $set:req.body 
+                },
+                {
+                    new:true,
+                    returnOriginal:false,
+                    returnDocument:true
+                });
+            return res.status(200).json({message:updatedUser,success:true})
+        } catch (error) {
+            next(error)
+        }
+       }
+
+        // delete room 
+         async deleteUser(req,res){
+
+        const {id} = req.params;
+
+        try {
+            await UserModel.deleteOne({_id:id})
+            return res.status(200).json({message:"successfully deleted",success:true})
+        } catch (error) {
+            next(error)
+        }
     }
-},{timestamps:true})
+
+};
 
 
+module.exports = new UserController()
 
-module.exports =mongoose.model("User",UserSchema)
+
