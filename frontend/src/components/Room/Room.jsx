@@ -1,28 +1,28 @@
-import styles from "./Room.module.css"
-const Room = () => {
-    return (
-        <div className={styles.room}>
-            {/* <div className={styles.imageWrapper}>
+import { Link } from "react-router-dom";
+import styles from "./Room.module.css";
+import {format} from "timeago.js"
 
-                <img src="https://images.unsplash.com/photo-1676015576269-64c967a98bc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw2OHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=60" alt="roomImg" />
-            </div> */}
+const Room = ({room}) => {
+    return (
+        <Link to={`../rooms/${room?._id}`} className={styles.room}>
+           
             <div className={styles.room_details}>
                 <div className={styles.details_top}>
-                    <h5 className={styles.room_name}>Happy Days</h5>
+                    <h5 className={styles.room_name}>{room.name}</h5>
                 </div>
                 <div className={styles.details_top}>
                     <span className={styles.size}>1.2GB used</span>
                     <div className={styles.updatedTime} >
-                        <p>Collaborators : </p> <span>1</span>
+                        <p>Collaborators : </p> <span>{room.collaborators?.length}</span>
                     </div>
                     <div className={styles.updatedTime} >
-                        <p>Last updated : </p> <span>7 hours ago</span>
+                        <p>Last updated : </p> <span>{format(room.updatedAt)}</span>
                     </div>
                 </div>
 
 
             </div>
-        </div>
+        </Link>
     )
 }
 

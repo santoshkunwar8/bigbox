@@ -17,18 +17,18 @@ const SideList = () => {
                     <p>Uploads</p>
                 </div>
             </Link>
-            <Link to={"files"}>
+            {/* <Link to={"files"}>
                 <div className={styles.sideItem}>
                     <img src="/assets/icons/file_upload.png" alt="fileUploadImg" />
                     <p>Files</p>
                 </div>
-            </Link>
-            <Link to={"notification"}>
+            </Link> */}
+            {/* <Link to={"notification"}>
                 <div className={styles.sideItem}>
                     <img src="/assets/icons/bell.png" alt="fileUploadImg" />
                     <p>Notifications</p>
                 </div>
-            </Link>
+            </Link> */}
             <Link to={"invite"}>
                 <div className={styles.sideItem}>
                     <img src="https://img.icons8.com/external-bearicons-outline-color-bearicons/64/null/external-Add-email-bearicons-outline-color-bearicons.png" />

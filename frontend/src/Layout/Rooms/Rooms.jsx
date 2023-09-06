@@ -1,11 +1,25 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Room from '../../components/Room/Room'
 import Header from '../Header/Header'
 import styles from "./Rooms.module.css"
 import { BiFilter } from "react-icons/bi"
 import { MdCreateNewFolder } from "react-icons/md"
+import useFetch from '../../hooks/useFetch'
 
 const Rooms = () => {
+
+
+    const [allRoom,setAllRooms]=useState(null)
+    const {getFetch} =useFetch()
+
+    useEffect(()=>{
+        getFetch("/room",(err,data)=>{
+            if(err)return;
+            setAllRooms(data)
+        })
+    },[])
+
+
     return (
         <div className={styles.rooms}>
             <Header img={"https://img.icons8.com/officel/40/null/slack.png"} name={"Created Rooms"} >
@@ -20,16 +34,11 @@ const Rooms = () => {
                 </button>
             </Header>
             <div className={styles.room_container}>
-                <Room />
-                <Room />
-                <Room />
-                <Room />
-                <Room />
-                <Room />
-                <Room />
-                <Room />
-                <Room />
-                <Room />
+                {
+                    allRoom ? allRoom.map(room=><Room room={room}/>) :"loading"
+                }
+              
+              
 
             </div>
         </div>

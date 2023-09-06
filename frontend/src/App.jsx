@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Account from './Layout/Account/Account'
 import Chats from './Layout/Chats/Chats'
@@ -9,6 +9,7 @@ import Rooms from './Layout/Rooms/Rooms'
 import Settings from './Layout/Settings/Settings'
 import UploadFile from './Layout/upload/UploadFile'
 import Home from './pages/Home/Home'
+import SingleRoom from './pages/SingleRoom/SingleRoom'
 
 function App() {
 
@@ -16,8 +17,10 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path='home' element={<Home />} >
+          <Route path='/' element={<Navigate to={"/home"}/>} />
+          <Route path='/home' element={<Home />} >
             <Route path='rooms' element={<Rooms />} />
+            <Route path='rooms/:id' element={<SingleRoom/>} />
             <Route path='files' element={<Files />} />
             <Route path='invite' element={<Invite />} />
             <Route path='settings' element={<Settings />} />

@@ -23,9 +23,11 @@
   font-size: 12px;
 }
 .room_name {
-  font-size: 15px;
+  font-size: 17px;
+  
   font-weight: 500;
- color: gray;
+ 
+ color: var(--primary_color);
   letter-spacing: 1px;
 }
 .updatedTime {
