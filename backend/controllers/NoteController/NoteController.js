@@ -7,11 +7,12 @@ class NoteController{
 
 
     // add room 
-        async createNote(req,res){
+        async createNote(req,res,next
+            ){
         try {
 
             let newNote  =    await NoteModel.create(req.body)
-            newNote = newNote.populate(["user","room"]);
+            newNote = await newNote.populate(["user","room"]);
             return res.status(200).json({message:newNote,success:true});
 
 
@@ -20,7 +21,7 @@ class NoteController{
         }
         }
 
-        async getNote(req,res){
+        async getNote(req,res,next){
 
         const query = req.query;
 
@@ -37,7 +38,7 @@ class NoteController{
 
         // update room 
 
-        async updateNote(req,res){
+        async updateNote(req,res,next){
 
         const {id} = req.params;
 
@@ -60,7 +61,7 @@ class NoteController{
        }
 
         // delete room 
-         async deleteNote(req,res){
+         async deleteNote(req,res,next){
 
         const {id} = req.params;
 

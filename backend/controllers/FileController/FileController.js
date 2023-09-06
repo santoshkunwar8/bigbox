@@ -9,11 +9,11 @@ class FileControllers{
 
 
     // add room 
-        async createFile(req,res){
+        async createFile(req,res,next){
         try {
 
             let newFile  =    await FileModel.create(req.body)
-            newFile = newFile.populate(["user","room"]);
+            newFile =  await newFile.populate(["user","room"]);
             return res.status(200).json({message:newFile,success:true});
 
 
@@ -22,7 +22,7 @@ class FileControllers{
         }
         }
 
-        async getFile(req,res){
+        async getFile(req,res,next){
 
         const query = req.query;
 
@@ -39,7 +39,7 @@ class FileControllers{
 
         // update room 
 
-        async updateFile(req,res){
+        async updateFile(req,res,next){
 
         const {id} = req.params;
 
@@ -62,7 +62,7 @@ class FileControllers{
        }
 
         // delete room 
-         async deleteFile(req,res){
+         async deleteFile(req,res,next){
 
         const {id} = req.params;
 
@@ -75,4 +75,4 @@ class FileControllers{
     }
 
 }
-module.exports = new FileControllers()
+module.exports= new FileControllers()

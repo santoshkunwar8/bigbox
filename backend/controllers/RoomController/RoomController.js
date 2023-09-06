@@ -5,11 +5,11 @@ class RoomController{
 
 
     // add room 
-        async createRoom(req,res){
+        async createRoom(req,res,next){
         try {
 
             let newRoom  =    await RoomModel.create(req.body);
-            newRoom = newRoom.populate(["user","collaborators"]);
+            newRoom = await newRoom.populate(["user","collaborators"]);
             return res.status(200).json({message:newRoom,success:true});
 
 
@@ -18,7 +18,7 @@ class RoomController{
         }
         }
 
-        async getRoom(req,res){
+        async getRoom(req,res,next){
 
         const query = req.query;
 
@@ -35,7 +35,7 @@ class RoomController{
 
         // update room 
 
-        async updateRoom(req,res){
+        async updateRoom(req,res,next){
 
         const {id} = req.params;
 
@@ -58,7 +58,7 @@ class RoomController{
        }
 
         // delete room 
-         async deleteRoom(req,res){
+         async deleteRoom(req,res,next){
 
         const {id} = req.params;
 

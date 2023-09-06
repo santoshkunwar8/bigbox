@@ -6,7 +6,7 @@ class UserController{
 
 
     // add room 
-        async createUser(req,res){
+        async createUser(req,res,next){
         try {
 
             let newUser  =    await UserModel.create(req.body);
@@ -19,7 +19,7 @@ class UserController{
         }
         }
 
-        async getUser(req,res){
+        async getUser(req,res,next){
 
         const query = req.query;
 
@@ -36,7 +36,7 @@ class UserController{
 
         // update room 
 
-        async updateUser(req,res){
+        async updateUser(req,res,next){
 
         const {id} = req.params;
 
@@ -59,7 +59,7 @@ class UserController{
        }
 
         // delete room 
-         async deleteUser(req,res){
+         async deleteUser(req,res,next){
 
         const {id} = req.params;
 
