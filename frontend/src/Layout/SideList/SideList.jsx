@@ -11,12 +11,12 @@ const SideList = () => {
 
                 </div>
             </Link>
-            <Link to={""}>
+            {/* <Link to={""}>
                 <div className={styles.sideItem}>
                     <img src="https://img.icons8.com/external-flatart-icons-lineal-color-flatarticons/64/null/external-account-taxes-flatart-icons-lineal-color-flatarticons-1.png" />
                     <p>Uploads</p>
                 </div>
-            </Link>
+            </Link> */}
             {/* <Link to={"files"}>
                 <div className={styles.sideItem}>
                     <img src="/assets/icons/file_upload.png" alt="fileUploadImg" />

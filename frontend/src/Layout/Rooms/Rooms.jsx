@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Room from '../../components/Room/Room'
 import Header from '../Header/Header'
 import styles from "./Rooms.module.css"
 import { BiFilter } from "react-icons/bi"
 import { MdCreateNewFolder } from "react-icons/md"
 import useFetch from '../../hooks/useFetch'
+import RoomItem from '../../components/Rooms/RoomItem/RoomItem'
 
 const Rooms = () => {
 
@@ -35,7 +35,7 @@ const Rooms = () => {
             </Header>
             <div className={styles.room_container}>
                 {
-                    allRoom ? allRoom.map(room=><Room room={room}/>) :"loading"
+                    allRoom ? allRoom.map(room=><RoomItem room={room}/>) :"loading"
                 }
               
               

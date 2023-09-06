@@ -26,6 +26,7 @@ class FileControllers{
 
         const query = req.query;
 
+        console.log(query)
         
 
         try {

@@ -1,8 +1,30 @@
-import React from 'react'
-import { Avatar, AvatarBadge, AvatarGroup } from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { Avatar, AvatarGroup } from '@chakra-ui/react'
+import  {BsThreeDotsVertical} from "react-icons/bs"
 import styles from "./SingleRoom.module.css"
+import RoomsAssets from '../../components/Rooms/RoomsAssetsBox/RoomsAssets'
+import useFetch from '../../hooks/useFetch'
+import {  useParams } from 'react-router-dom'
+import moment from "moment"
+import { format } from 'timeago.js'
 
 const SingleRoom = () => {
+  const {id} = useParams()
+  const {getFetch}  = useFetch();
+  const [roomData,setRoomData] =useState(null)
+
+
+  useEffect(()=>{
+    getFetch(`/room?_id=${id}`,(err,data)=>{
+
+
+      if(err)return;
+      setRoomData(data[0])
+
+    })
+  },[id])
+
+
   return (
     <div className={styles.singleRoom}>
 
@@ -11,27 +33,42 @@ const SingleRoom = () => {
 
          
                 <div className={styles.headerLeft}>
-                    <h1 className={styles.roomName}>Room Name</h1>
+                    <h1 className={styles.roomName}>{roomData?.name}</h1>
+                    <div className={styles.headerLeftBottom}>
+
+                    <p className={styles.infoText}>{moment(roomData?.createdAt).format('lll')}</p>
+                    <p className={styles.infoText}>44 Files</p>
+                    <p className={styles.infoText}>2 notes</p>
+                    </div>
                 </div>
         
             <div className={styles.headerRight}>
 
-                <AvatarGroup size='sm' max={2}>
-  <Avatar  name='Ryan Florence' src='https://bit.ly/ryan-florence' />
-  <Avatar size={'sm'} name='Segun Adebayo' src='https://bit.ly/sage-adebayo' />
-  <Avatar size={'sm'} name='Kent Dodds' src='https://bit.ly/kent-c-dodds' />
-  <Avatar size={'sm'} name='Prosper Otemuyiwa' src='https://bit.ly/prosper-baba' />
-  <Avatar size={'sm'} name='Christian Nwamba' src='https://bit.ly/code-beast' />
+            <div className={styles.headerRightTop}>
+
+                    <AvatarGroup size='sm' max={3}>
+           
+          {
+            roomData?.collaborators?.map(cb=>            <Avatar key={cb?._id}  name={cb.username} src={cb.image} />
+ )
+          }
 </AvatarGroup>
+<BsThreeDotsVertical/>
+                </div>
+                    <p className={styles.infoText}>Edited - {format(roomData?.updatedAt)}</p>
 
 
 
             </div>
 
         </div>
+        <RoomsAssets/>
 
     </div>
   )
 }
 
 export default SingleRoom
+
+// ctrl r  to redo
+// u to undo

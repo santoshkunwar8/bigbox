@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./Room.module.css";
 import {format} from "timeago.js"
 
-const Room = ({room}) => {
+const RoomItem = ({room}) => {
     return (
         <Link to={`../rooms/${room?._id}`} className={styles.room}>
            
@@ -26,4 +26,4 @@ const Room = ({room}) => {
     )
 }
 
-export default Room
+export default RoomItem

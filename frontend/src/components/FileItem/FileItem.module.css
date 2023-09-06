@@ -1,0 +1,27 @@
+.fileItem{
+    padding: 1rem;
+    border-radius: 0.61rem;
+    /* back  */
+      background-color: #21213e3d;
+      width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    cursor: pointer;
+
+
+
+}
+
+.fileImg{
+    width: 40px;
+    height:40px;
+
+}
+.fileName{
+    color: gray;
+    letter-spacing: 1px;
+    font-size: 9px;
+}

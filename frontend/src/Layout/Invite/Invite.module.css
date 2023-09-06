@@ -14,14 +14,15 @@ option,
   letter-spacing: 1px;
   outline: none;
   border-radius: 4px;
-  color: orangered;
+  color: gray;
   background-color: transparent;
-  border: 2px solid orangered;
+  border: 1px solid rgba(255, 255, 255, 0.544);
   padding: 0 10px;
+  font-size: 11px !important;
 }
 .user_search_input::placeholder,
 .access_time::placeholder {
-  font-size: 13px;
+  font-size: 11px;
 }
 option {
   outline: none;
@@ -32,7 +33,8 @@ option {
 }
 .invitation_item p {
   color: gray;
-  font-size: 14px;
+  font-size: 13px;
+  width: 100%;
 }
 .invitation_item {
   display: flex;
@@ -44,7 +46,7 @@ option {
   width: 50% !important;
   background-color: transparent !important;
   color: black;
-  border: 1px solid orangered;
+  border: 1px solid var(--primary_color);
 }
 .invite_bottom_btns {
   display: flex;
@@ -58,8 +60,9 @@ option {
   min-width: 80px;
 }
 .inviteBtn {
+  letter-spacing: 1px;
   background-color: var(--primary_color);
 }
 .cancelBtn {
-  border: 2px solid orangered;
+  border: 1px solid rgba(128, 128, 128, 0.589);
 }
