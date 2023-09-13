@@ -3,10 +3,10 @@ import axiosInstance from '../utils/axios'
 
 const useFetch = () => {
   
- const getFetch=async(endpoint,cb)=>{
+ const getFetch=async(endpointApi,params,cb)=>{
 
     try {
-        const {status,data} = await axiosInstance.get(endpoint);
+        const {status,data} = await endpointApi([...params]);
         if(status===200){
             cb(null,data.message);
         }else{

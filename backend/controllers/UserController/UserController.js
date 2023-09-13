@@ -19,20 +19,35 @@ class UserController{
         }
         }
 
-        async getUser(req,res,next){
+     
 
-        const query = req.query;
+        async searchUser(req, res) {
 
-        
-
-        try {
-            const users = await UserModel.find({...query})
-            return res.status(200).json({message:users,success:true})
-        } catch (error) {
-            next(error)
-        }
-        }
-
+            const { userId } = req.query;
+            let keyword = {};
+            try {
+              if (!userId) {
+                keyword = req.query.search_query
+                  ? {
+                      $or: [
+                        {
+                          username: { $regex: req.query.search_query, $options: "i" },
+                        },
+                      
+                        { email: { $regex: req.query.search_query, $options: "i" } },
+                      ],
+                    }
+                  : {};
+              } else {
+                keyword = { _id: userId };
+              }
+              const fetchedUser = await UserModel.find(keyword);
+              res.status(200).json({ message: fetchedUser, success: true });
+            } catch (error) {
+              console.log(error);
+              res.status(500).json({ message: error, success: false });
+            }
+          }
 
         // update room 
 

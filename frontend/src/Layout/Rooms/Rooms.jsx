@@ -5,15 +5,17 @@ import { BiFilter } from "react-icons/bi"
 import { MdCreateNewFolder } from "react-icons/md"
 import useFetch from '../../hooks/useFetch'
 import RoomItem from '../../components/Rooms/RoomItem/RoomItem'
+import { CreateRoomModal } from '../../pages/modal/CreateRoom/CreateRoomModal'
+import { getUserRoomApi } from '../../utils/api'
 
 const Rooms = () => {
 
-
+    const userId = "64f7e688fea8a219d4d481eb"
     const [allRoom,setAllRooms]=useState(null)
     const {getFetch} =useFetch()
 
     useEffect(()=>{
-        getFetch("/room",(err,data)=>{
+        getFetch(getUserRoomApi,[userId],(err,data)=>{
             if(err)return;
             setAllRooms(data)
         })
@@ -27,15 +29,18 @@ const Rooms = () => {
                     <BiFilter className={styles.filter_icon} size={"2rem"} />
                     Filter Rooms
                 </button>
+                <CreateRoomModal>
+
                 <button className={styles.create_room}>
 
                     <MdCreateNewFolder size={"1.62rem"} className={styles.create_btn} />   Create
 
                 </button>
+                </CreateRoomModal>
             </Header>
             <div className={styles.room_container}>
                 {
-                    allRoom ? allRoom.map(room=><RoomItem room={room}/>) :"loading"
+                    allRoom ? allRoom.map(room=><RoomItem key={room._id} room={room}/>) :"loading"
                 }
               
               
