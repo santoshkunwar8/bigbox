@@ -17,6 +17,8 @@ const SearchUserItem:React.FC<SearchUserItemPropsType> = ({handleClick ,user}) =
             <h5 className='username'> {user.username}</h5>
             <p className='email'> {user.email}</p>
         </div>
+        
+
     </SearchUserItemWrapper>
   )
 }

@@ -7,15 +7,19 @@ import {
  
 
   } from '@chakra-ui/react'
-  import React, { useEffect, useState } from 'react';
+  import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { CreateRoomModalWrapper } from './CreateRoomModal.styles';
 import SearachUserPopover from '../../../Layout/Popover/SearchUserPopover/SearachUserPopover';
 import { Usertype } from '../../../utils/Types';
 import useFetch from '../../../hooks/useFetch';
-import { searchUserByNameApi } from '../../../utils/api';
+import { createRoomApi, searchUserByNameApi } from '../../../utils/api';
 import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/SearchSelectedUsers';
   type CreateRoomModalProps={
     children:React.ReactNode,
+  }
+  type debatePayloadType={
+    name:string,
+    collaborators:string[],
   }
   export const  CreateRoomModal:React.FC<CreateRoomModalProps>=({children})=> {
 
@@ -25,9 +29,13 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
     const [userInput,setUserInput] =useState("");
     const [ selelctedCollaborator,setSelectedCollaborator]=useState<Usertype[]>([]);
     const [searchedUsers,setSearchedUsers] =useState<Usertype[]>([])
-    const {getFetch} = useFetch();
+    const {getFetch,postFetch} = useFetch();
     const [filterdCollaborator,setFilteredCollaborator]=useState<Usertype[]>([])
-
+    const [debatePayload,setDebatePayload]=useState<debatePayloadType>({
+      name:"",
+      collaborators:[],
+    })
+    const currentUser = "64f7e688fea8a219d4d481eb";
     useEffect(()=>{
 
 
@@ -35,8 +43,14 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
         if(err)return;
         setSearchedUsers(data)
       })
-
+      
     },[userInput])
+
+    useEffect(()=>{
+      setDebatePayload(prev=>({...prev,collaborators:selelctedCollaborator.map(c=>c._id)}))
+    },[selelctedCollaborator])
+
+
 
     useEffect(()=>{
 
@@ -48,7 +62,13 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
       setFilteredCollaborator(filtered)
     },[selelctedCollaborator,searchedUsers])
 
-    const handleSearchUserByUsername=()=>{
+    const handleRemoveSelected=(currUser:Usertype)=>{
+
+      setSelectedCollaborator(prev=>{
+        return prev.filter(user=>user._id !== currUser._id)
+      })
+
+
 
     }
 
@@ -62,6 +82,35 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
           return [...prev, selected]
         }
       })
+    }
+
+    const handleRoomInputChange=(e:ChangeEvent<HTMLInputElement>)=>{ 
+      const {value} = e.target;
+      setDebatePayload(prev=>({...prev,name:value}))
+    }
+
+
+    const handleCreateRoom=(e:SyntheticEvent)=>{
+      e.preventDefault();
+
+      const payload = {
+        ...debatePayload,
+        collaborators:[...debatePayload.collaborators,currentUser]
+      };
+
+    try {
+
+      postFetch(createRoomApi,{...payload,user:currentUser},(err,data)=>{
+        if(err)return ;
+        onClose()
+      })
+      
+        console.log(debatePayload)
+    } catch (error) {
+        console.log(error)
+    }
+
+
     }
 
 
@@ -78,18 +127,18 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
                     <h1 className='headerText'>Create Room </h1>
                 </div>
 
-                    <form >
-                        <input type="text"  placeholder='room name'/>
+                    <form onSubmit={handleCreateRoom} >
+                        <input type="text"  placeholder='room name' onChange={handleRoomInputChange}/>
                     
                     
 
                         <input type="text"  placeholder='invite other' onChange={(e)=>setUserInput(e.target.value)}/>
-      <div className="selectedWrapper">
-      { 
+                      <div className="selectedWrapper">
+          { 
 
-selelctedCollaborator.map(sel=><SearchSelectedUsers selectedUser={sel} key={sel._id}/>)
-}
-</div>
+                  selelctedCollaborator.map(sel=><SearchSelectedUsers handleRemoveSelected={handleRemoveSelected} selectedUser={sel} key={sel._id}/>)
+          }
+        </div>
                    
                  {
 

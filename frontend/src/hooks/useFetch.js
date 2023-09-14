@@ -20,7 +20,7 @@ const useFetch = () => {
  }
  const postFetch=async(endpoint,payload,cb)=>{
     try {
-         const {status,data} = await axiosInstance.post(endpoint,payload);
+         const {status,data} = await endpoint(payload);
         if(status===200){
             cb(null,data.message);
         }else{

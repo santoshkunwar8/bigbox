@@ -19,5 +19,9 @@ export const SearchSelectedUseWRapper=styled.div`
         letter-spacing:1px;
         color:gray;
     }
-
+    .removeIcon{
+        fill:gray;
+        font-size:13px;
+        cursor:pointer;
+    }
 `
