@@ -15,7 +15,7 @@ const FileItem = ({file}) => {
     <div className={styles.fileItem}>
 
             <img className={styles.fileImg} width="94" height="94" src={iconMap[file.type]} alt="stack-of-photos"/>
-            <p className={styles.fileName}>{file.name}</p>
+            <p className={styles.fileName}>{file.name.substring(0,15)}...</p>
 
 
     </div>

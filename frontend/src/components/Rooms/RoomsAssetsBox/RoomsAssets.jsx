@@ -23,6 +23,7 @@ const RoomsAssets = () => {
 
   return (
     <div className={styles.roomAssets}>
+      <div className={styles.filecontainer}>
       <UploadFileModal>
 
       <div className={styles.uploadItem}>
@@ -32,9 +33,11 @@ const RoomsAssets = () => {
 
       </div>
       </UploadFileModal>
+
             {
               filesArr  ? filesArr.map(file=><FileItem file={file}/>) :"LOADING....."
             }
+            </div>
     </div>
   )
 }
