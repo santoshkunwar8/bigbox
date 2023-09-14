@@ -9,7 +9,7 @@ import {
   } from '@chakra-ui/react'
   import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { CreateRoomModalWrapper } from './CreateRoomModal.styles';
-import SearachUserPopover from '../../../Layout/Popover/SearchUserPopover/SearachUserPopover';
+import SearachUserPopover from '../../Popover/SearchUserPopover/SearachUserPopover';
 import { Usertype } from '../../../utils/Types';
 import useFetch from '../../../hooks/useFetch';
 import { createRoomApi, searchUserByNameApi } from '../../../utils/api';

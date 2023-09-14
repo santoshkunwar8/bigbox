@@ -5,7 +5,7 @@ import { BiFilter } from "react-icons/bi"
 import { MdCreateNewFolder } from "react-icons/md"
 import useFetch from '../../hooks/useFetch'
 import RoomItem from '../../components/Rooms/RoomItem/RoomItem'
-import { CreateRoomModal } from '../../pages/modal/CreateRoom/CreateRoomModal'
+import { CreateRoomModal } from '../modal/CreateRoom/CreateRoomModal'
 import { getUserRoomApi } from '../../utils/api'
 
 const Rooms = () => {

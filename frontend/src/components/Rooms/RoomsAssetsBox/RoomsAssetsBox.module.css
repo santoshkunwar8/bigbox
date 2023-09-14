@@ -2,3 +2,34 @@
     gap: 1rem;
     display: flex;
 }
+.uploadItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 5px;
+    width: 120px;
+    background-color: #21213e3d;
+    border: 2px solid var(--primary_color);
+    border-radius: 10px;
+    transition: all .3s ease;
+    cursor: pointer;
+    opacity: 0.8;
+    height: 120px;;
+}
+.uploadItem:hover{
+    scale: 1.1;
+    opacity: 1;
+}
+.uploadItem svg{
+    font-size: 2rem;
+    fill: var(--primary_color);
+}
+
+.uploadItem p{
+    color: var(--primary_color);
+    font-size: 10px;
+    letter-spacing: 1px;;
+    font-weight: bold;
+
+}

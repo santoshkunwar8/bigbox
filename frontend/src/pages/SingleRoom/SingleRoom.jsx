@@ -7,6 +7,7 @@ import useFetch from '../../hooks/useFetch'
 import {  useParams } from 'react-router-dom'
 import moment from "moment"
 import { format } from 'timeago.js'
+import { getRoomByIdApi } from '../../utils/api'
 
 const SingleRoom = () => {
   const {id} = useParams()
@@ -15,7 +16,8 @@ const SingleRoom = () => {
 
 
   useEffect(()=>{
-    getFetch(`/room?_id=${id}`,(err,data)=>{
+    getFetch(getRoomByIdApi,[id],(err,data)=>{
+      
 
 
       if(err)return;

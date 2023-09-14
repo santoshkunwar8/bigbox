@@ -5,6 +5,7 @@
   border-radius: 8px;
   padding: 10px;
   cursor: pointer;
+  
 }
 .imageWrapper {
   height: 120px;
@@ -18,8 +19,8 @@
 .room_details {
   padding: 10px 2px;
   display: flex ;
-  flex-direction: column  ;
-  gap: 0.4rem;
+  flex-direction: column   !important;
+  gap: 1rem;
   font-size: 12px;
 }
 .room_name {
@@ -47,4 +48,10 @@
 
   letter-spacing: 1px;
   font-size: 11px;
+}
+.details_header{
+  display: flex;
+  justify-content: space-between;
+  
+  /* flex-direction: column; */
 }

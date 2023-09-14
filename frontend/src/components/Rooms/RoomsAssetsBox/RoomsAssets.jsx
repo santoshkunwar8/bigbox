@@ -3,6 +3,9 @@ import FileItem from '../../FileItem/FileItem';
 import styles from "./RoomsAssetsBox.module.css";
 import { useParams } from 'react-router-dom';
 import useFetch from '../../../hooks/useFetch';
+import { getFilebyRoomId } from '../../../utils/api';
+import { AiOutlineCloudUpload } from 'react-icons/ai';
+import UploadFileModal from '../../../Layout/modal/createFile/UploadFileModal';
 
 
 const RoomsAssets = () => {
@@ -12,7 +15,7 @@ const RoomsAssets = () => {
 
   const {getFetch} = useFetch()
   useEffect(()=>{
-    getFetch('/file',(err,data)=>{
+    getFetch(getFilebyRoomId,[id],(err,data)=>{
       if(err)return;
       setFilesArr(data)
     })
@@ -20,6 +23,15 @@ const RoomsAssets = () => {
 
   return (
     <div className={styles.roomAssets}>
+      <UploadFileModal>
+
+      <div className={styles.uploadItem}>
+
+        <AiOutlineCloudUpload/>
+        <p>Upload</p>
+
+      </div>
+      </UploadFileModal>
             {
               filesArr  ? filesArr.map(file=><FileItem file={file}/>) :"LOADING....."
             }

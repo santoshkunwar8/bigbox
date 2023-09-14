@@ -8,13 +8,17 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
-      gap: 5px;
+      gap: 10px;
     cursor: pointer;
+    transition: all .3s ease;
+    border: 2px solid rgba(128, 128, 128, 0.156);
 
 
 
 }
-
+.fileItem:hover{
+    scale: 1.1;
+}
 .fileImg{
     width: 40px;
     height:40px;
@@ -23,5 +27,5 @@
 .fileName{
     color: gray;
     letter-spacing: 1px;
-    font-size: 9px;
+    font-size: 10px;
 }
