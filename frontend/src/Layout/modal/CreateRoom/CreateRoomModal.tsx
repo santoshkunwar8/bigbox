@@ -14,12 +14,17 @@ import { Usertype } from '../../../utils/Types';
 import useFetch from '../../../hooks/useFetch';
 import { createRoomApi, searchUserByNameApi } from '../../../utils/api';
 import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/SearchSelectedUsers';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../../redux';
+import { useDispatch } from 'react-redux';
+import { ConstantVar } from '../../../utils/enums';
   type CreateRoomModalProps={
     children:React.ReactNode,
   }
   type debatePayloadType={
     name:string,
     collaborators:string[],
+    isPublic:boolean
   }
   export const  CreateRoomModal:React.FC<CreateRoomModalProps>=({children})=> {
 
@@ -31,39 +36,51 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
     const [searchedUsers,setSearchedUsers] =useState<Usertype[]>([])
     const {getFetch,postFetch} = useFetch();
     const [filterdCollaborator,setFilteredCollaborator]=useState<Usertype[]>([])
+    const dispatch =useDispatch()
+    const {RefreshAction} = bindActionCreators(actionCreators,dispatch)
+    const [accessType,setAccessType] = useState(ConstantVar.PRIVATE)
+    
     const [debatePayload,setDebatePayload]=useState<debatePayloadType>({
       name:"",
       collaborators:[],
+      isPublic:false
     })
+    console.log(debatePayload)
     const currentUser = "64f7e688fea8a219d4d481eb";
     useEffect(()=>{
-
-
+      
+      
       getFetch(searchUserByNameApi,[userInput],(err,data)=>{
         if(err)return;
         setSearchedUsers(data)
       })
       
     },[userInput])
-
+    
     useEffect(()=>{
       setDebatePayload(prev=>({...prev,collaborators:selelctedCollaborator.map(c=>c._id)}))
     },[selelctedCollaborator])
-
-
-
+    
+    
+    
     useEffect(()=>{
-
-     const filtered =  searchedUsers.filter(user => {
-
+      
+      const filtered =  searchedUsers.filter(user => {
+        
         return !selelctedCollaborator.some(selectedUser => selectedUser._id === user._id);
       });
       
       setFilteredCollaborator(filtered)
     },[selelctedCollaborator,searchedUsers])
-
+    
+    const handleAccessChange=(type:ConstantVar.PRIVATE| ConstantVar.PUBLIC)=>{
+  setAccessType(type)
+  setDebatePayload(prev=>({
+    ...prev,isPublic:type ===ConstantVar.PUBLIC
+  }))
+}
     const handleRemoveSelected=(currUser:Usertype)=>{
-
+      
       setSelectedCollaborator(prev=>{
         return prev.filter(user=>user._id !== currUser._id)
       })
@@ -103,6 +120,7 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
       postFetch(createRoomApi,{...payload,user:currentUser},(err,data)=>{
         if(err)return ;
         onClose()
+        RefreshAction()
       })
       
         console.log(debatePayload)
@@ -127,18 +145,32 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
                     <h1 className='headerText'>Create Room </h1>
                 </div>
 
+                            <div className="accessBox">
+
+                      <div className={`accessItem ${accessType===ConstantVar.PRIVATE ? "activeItem":""}  `} onClick={()=>handleAccessChange(ConstantVar.PRIVATE)}>
+                          <img width={"30px"} src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/null/external-private-key-privacy-flaticons-flat-flat-icons-2.png" />
+                         <p>Private</p>
+                      </div>
+                      <div className={`accessItem ${accessType===ConstantVar.PUBLIC ? "activeItem":""}  `} onClick={()=>handleAccessChange(ConstantVar.PUBLIC)}>
+                          <img width={"30px"} src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/null/external-global-freelancer-xnimrodx-lineal-color-xnimrodx-2.png" />
+
+                          <p>Public</p>
+                      </div>
+
+                    </div>
                     <form onSubmit={handleCreateRoom} >
                         <input type="text"  placeholder='room name' onChange={handleRoomInputChange}/>
                     
                     
 
                         <input type="text"  placeholder='invite other' onChange={(e)=>setUserInput(e.target.value)}/>
-                      <div className="selectedWrapper">
           { 
+                selelctedCollaborator.length > 0 &&    <div className="selectedWrapper">
 
-                  selelctedCollaborator.map(sel=><SearchSelectedUsers handleRemoveSelected={handleRemoveSelected} selectedUser={sel} key={sel._id}/>)
-          }
+
+                 { selelctedCollaborator.map(sel=><SearchSelectedUsers handleRemoveSelected={handleRemoveSelected} selectedUser={sel} key={sel._id}/>)}
         </div>
+          }
                    
                  {
 

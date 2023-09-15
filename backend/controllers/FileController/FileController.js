@@ -1,4 +1,5 @@
 const FileModel = require("../../models/FileModel/FileModel")
+const RoomModel = require("../../models/RoomModel/RoomModel")
 
 
 
@@ -13,6 +14,8 @@ class FileControllers{
         try {
 
             let newFile  =    await FileModel.create(req.body)
+            await RoomModel.findByIdAndUpdate(req.body.room,{$set:{}})
+            
             newFile =  await newFile.populate(["user","room"]);
             return res.status(200).json({message:newFile,success:true});
 

@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import styles from "./Invite.module.css"
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import { useSelector } from 'react-redux';
+import useFetch from '../../hooks/useFetch';
+import { getUserRoomApi } from '../../utils/api';
+import { State } from '../../redux/Reducers';
 
 const Invite = () => {
+
+     const userId = "64f7e688fea8a219d4d481eb"
+    const [allRoom,setAllRooms]=useState(null)
+    const {refresh} = useSelector((state:State)=>state.other)
+
+
+    const {getFetch} =useFetch()
+
+    useEffect(()=>{
+        getFetch(getUserRoomApi,[userId],(err,data)=>{
+            if(err)return;
+            setAllRooms(data)
+        })
+    },[refresh])
+
+
     return (
         <div className={styles.invite}>
             <Header img={"https://img.icons8.com/external-bearicons-outline-color-bearicons/64/null/external-Add-email-bearicons-outline-color-bearicons.png"} name="Invitations"> </Header>
@@ -14,11 +34,13 @@ const Invite = () => {
                     <p>Select the room in which you want other  users to invite . If you have not created any room by your own  then  the default one is selected .  </p>
                     <select className={styles.room_select} name="room" >
                         <option value="Rooms" selected >Rooms</option>
-                        <option value="">21 Guns</option>
-                        <option value="">My Hubby</option>
-                        <option value="">Test</option>
-                        <option value="">Classmates</option>
-                        <option value="">Guff Notes</option>
+                        {
+                            allRoom && allRoom.map(room=>(
+
+                                <option value={room?._id}>{room?.name}</option>
+                            ))
+                        }
+                       
                     </select>
                 </div>
                 <div className={styles.invitation_item}>

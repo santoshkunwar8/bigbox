@@ -9,7 +9,12 @@ const RoomItem = ({room}) => {
            
             <div className={styles.room_details}>
                 <div className={styles.details_header}>
-                    <h5 className={styles.room_name}>{room.name}</h5>
+                  <div className={styles.name}>
+                    {
+                        room.isPublic ?       <img width={"30px"} src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/null/external-global-freelancer-xnimrodx-lineal-color-xnimrodx-2.png" /> : <img width={"30px"} src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/null/external-private-key-privacy-flaticons-flat-flat-icons-2.png" /> 
+                    }
+                     <h5 className={styles.room_name}>{room.name}</h5>
+                    </div> 
 
                 <div className={styles.collabAvatars}>
                               <AvatarGroup size="xs" max={3}>

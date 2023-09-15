@@ -3,8 +3,8 @@ import  {styled} from "styled-components"
 export const PreviewFilesWrapper=styled.div`
 
 
-        width:80px;
-        height:80px;
+        width:60px;
+        height:60px;
         border-radius:5px;
         overflow:hidden;
         position:relative;

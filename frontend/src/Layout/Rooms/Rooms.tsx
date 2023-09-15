@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
-import styles from "./Rooms.module.css"
+import styles from  "./Rooms.module.css"
 import { BiFilter } from "react-icons/bi"
 import { MdCreateNewFolder } from "react-icons/md"
 import useFetch from '../../hooks/useFetch'
 import RoomItem from '../../components/Rooms/RoomItem/RoomItem'
 import { CreateRoomModal } from '../modal/CreateRoom/CreateRoomModal'
 import { getUserRoomApi } from '../../utils/api'
+import {useSelector} from "react-redux"
+import {State} from '../../redux/Reducers/index'
 
 const Rooms = () => {
 
     const userId = "64f7e688fea8a219d4d481eb"
     const [allRoom,setAllRooms]=useState(null)
+    const {refresh} = useSelector((state:State)=>state.other)
+
+
     const {getFetch} =useFetch()
 
     useEffect(()=>{
@@ -19,7 +24,7 @@ const Rooms = () => {
             if(err)return;
             setAllRooms(data)
         })
-    },[])
+    },[refresh])
 
 
     return (

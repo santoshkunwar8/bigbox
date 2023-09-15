@@ -6,20 +6,23 @@ import useFetch from '../../../hooks/useFetch';
 import { getFilebyRoomId } from '../../../utils/api';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import UploadFileModal from '../../../Layout/modal/createFile/UploadFileModal';
+import { useSelector } from 'react-redux';
+import { State } from '../../../redux/Reducers';
 
 
 const RoomsAssets = () => {
 
   const {id} = useParams();
   const [filesArr,setFilesArr] =useState(null)
+  const {refresh} = useSelector((state:State)=>state.other)
 
   const {getFetch} = useFetch()
-  useEffect(()=>{
+useEffect(()=>{
     getFetch(getFilebyRoomId,[id],(err,data)=>{
       if(err)return;
       setFilesArr(data)
     })
-  },[id])
+  },[id,refresh])
 
   return (
     <div className={styles.roomAssets}>

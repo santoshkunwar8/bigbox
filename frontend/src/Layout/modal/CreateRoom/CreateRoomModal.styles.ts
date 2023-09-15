@@ -8,10 +8,48 @@ min-height:300px;
 padding:2rem;
 display:flex;
 flex-direction:column;
+align-items:center;
 gap:2rem;
 .createRoomHeader{
-    
+    display:flex;
+    justify-content:center;
 }
+form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.accessBox{
+    display:flex;
+    width:100%;
+    justify-content:center;
+    gap:1rem;
+    .accessItem{
+        width:160px;
+        height:80px;
+        border-radius:8px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        cursor:pointer;
+        background:#1e1e1e;
+        transition:all .3s ease;
+        p{
+            color:gray;
+            letter-spacing:1px;
+            font-size:13px;
+        }
+    }
+    .activeItem{
+        border:2px solid var(--primary_color);
+        p{
+            color:var(--primary_color)
+        }
+    }
+}
+
 .selectedWrapper{
     display:flex;
     flex-wrap:wrap;
@@ -33,10 +71,11 @@ input{
     background:#1f1f1f;
     padding:0 1rem;
     font-size:12px;
+    outline:none;
     &::placeholder{
         color:gray;
         letter-spacing:1px;
-        font-size:14px;
+        font-size:12px;
     }
     
     
@@ -44,7 +83,8 @@ input{
 button{
     font-size:15px;
     letter-spacing:1px;
-    width:120px;
+    width:180px;
+    margin:auto;
     background:var(--primary_color);
 }
 

@@ -8,7 +8,7 @@ padding:2rem;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:1rem;
+gap:1.4rem;
 
 .uploadFileHeader{
     display:flex;
@@ -20,10 +20,13 @@ gap:1rem;
     }
     h1{
         font-size:1.7rem;
+        color:var(--primary_color);
         letter-spacing:1px;
         font-weight:600;
+        text-transform:uppercase;
     }
 }
+
 .imageWrapper{
     width:100%;
     display:flex;

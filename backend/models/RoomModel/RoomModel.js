@@ -10,6 +10,10 @@ const RoomSchema = mongoose.Schema({
         ref:"User",
         required:true
     },
+    isPublic:{
+        type:Boolean,
+        default:false,
+    },
     collaborators:[
         {
             type:mongoose.Schema.Types.ObjectId,
