@@ -16,6 +16,8 @@ type FileUploadPayload={
 export const createRoomApi=(data:roomPayloadType)=>axiosInstance.post("/room/create",data)
 export const getUserRoomApi =(userId:string)=>axiosInstance.get(`/room?user=${userId}`);
 export const getRoomByIdApi=(roomId:string)=>axiosInstance.get(`/room?_id=${roomId}`)
+export const addUserAsCollaboratorApi=(roomId:string,user:string)=>axiosInstance.post(`/room/invite/${roomId}`,{user})
+
 // user endpoints
 export const searchUserByNameApi=((search:string)=>axiosInstance.get(`/user?search_query=${search}`))
 export const searchUserByIdApi = ((userId:string)=>axiosInstance.get(`/user?userId=${userId}`))

@@ -15,6 +15,10 @@ app.use(morgan("common"))
 require("./utils/setup/db")()
 require('./routes/index')(app);
 
+
+app.use((err,req,res,next)=>{
+    res.status(500).json({message:err.message,success:false})
+})
             
 
 app.listen(8000,()=>console.log("server started ..."))
