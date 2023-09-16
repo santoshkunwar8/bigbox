@@ -8,3 +8,10 @@ export type Usertype={
 
 };
 
+
+export type RoomType={
+    name:string,
+    collaborators:Usertype[],
+    isPublic:boolean,
+    user:Usertype
+}
