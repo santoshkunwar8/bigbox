@@ -10,6 +10,7 @@ import Settings from './Layout/Settings/Settings'
 import UploadFile from './Layout/upload/UploadFile'
 import Home from './pages/Home/Home'
 import SingleRoom from './pages/SingleRoom/SingleRoom'
+import RoomOutlet from './components/SingleRoom/RoomOutlet'
 
 function App() {
 
@@ -20,10 +21,12 @@ function App() {
           <Route path='/' element={<Navigate to={"/home"}/>} />
           <Route path='/home' element={<Home />} >
             <Route path='rooms' element={<Rooms />} />
-            <Route path='rooms/:id' element={<SingleRoom/>} />
+            <Route path='rooms/:id' element={<RoomOutlet/>} >
+              <Route path='' element={<SingleRoom/>}/>
+            <Route path='settings' element={<Settings />} />
+            </Route>
             <Route path='files' element={<Files />} />
             <Route path='invite' element={<Invite />} />
-            <Route path='settings' element={<Settings />} />
             <Route path='chats' element={<Chats />} />
             <Route path='notification' element={<Notifications />} />
             <Route path='account' element={<Account />} />

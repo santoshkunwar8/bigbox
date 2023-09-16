@@ -4,10 +4,11 @@ import  {BsThreeDotsVertical} from "react-icons/bs"
 import styles from "./SingleRoom.module.css"
 import RoomsAssets from '../../components/Rooms/RoomsAssetsBox/RoomsAssets'
 import useFetch from '../../hooks/useFetch'
-import {  useParams } from 'react-router-dom'
+import {  Link, useParams } from 'react-router-dom'
 import moment from "moment"
 import { format } from 'timeago.js'
 import { getRoomByIdApi } from '../../utils/api'
+import { AiFillSetting } from 'react-icons/ai'
 
 const SingleRoom = () => {
   const {id} = useParams()
@@ -55,7 +56,9 @@ const SingleRoom = () => {
  )
           }
 </AvatarGroup>
-<BsThreeDotsVertical/>
+<Link to={"settings"}>
+<AiFillSetting/>
+</Link>
                 </div>
                     <p className={styles.infoText}>Edited - {format(roomData?.updatedAt)}</p>
 

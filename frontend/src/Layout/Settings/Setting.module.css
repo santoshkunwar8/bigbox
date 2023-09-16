@@ -6,6 +6,124 @@
   flex-direction: column;
   gap: 2rem;
 }
+.setting_section{
+  border: 1px solid rgba(128, 128, 128, 0.374);
+  min-height: 200px;
+  border-radius: 10px;
+  padding: 1.4rem 1rem;
+}
+.settingTopic{
+  font-size: 1.2rem;
+  color: white;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+
+.hr{
+  margin:  0.5rem 0;  
+  height: 2px;
+  width: 100%;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.374);
+}
+.settingContent{
+  padding: 1rem 0 ;
+
+}
+.singleItem{
+  display: flex;
+  
+  flex-direction: column;
+  gap: 4px;
+
+}
+.collaboratorsList{
+  border: 1px solid rgba(128, 128, 128, 0.374);
+  margin-top: 1rem;
+  padding: 10px;
+  border-radius: 4px;
+
+}
+/* mangage access */
+
+ .searchCollaboratorsInput{
+  border: 1px solid rgba(128, 128, 128, 0.374);
+    padding: 10px;
+    width: 98%;
+    border-radius: 5px;
+    margin: auto;
+    background-color: transparent;
+    height: 50px;
+    color: gray;
+    font-size: 13px;
+    outline: none;
+
+}
+.searchCollaboratorsInput::placeholder{
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: gray;
+}
+.inputBox{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.inputBox input{
+  height: 45px;
+  width: 400px;
+  background-color: #151515;
+  font-size: 12px;
+  letter-spacing: 1px;
+  color: white;
+  border: 1px solid rgba(189, 189, 189, 0.374);
+  border-radius: 4px;
+  padding:  0 10px;
+}
+.renameButton{
+  padding: 0 10px;
+  background-color: var(--primary_color);
+}
+.singleItem p{
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+/* danger zon  */
+.dangerItem{
+  border:1px solid rgba(128, 128, 128, 0.374);
+  border-radius: 4px;;
+  padding: 10px ;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.dangerItemLeft{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.dangerItemHeader{
+  color: white !important;
+  font-size: 14px !important;
+  font-weight: bold;
+  letter-spacing: 0.91px ;
+}
+.dangerItem button{
+
+  border: 1px solid rgba(255, 0, 0, 0.514);
+  border-radius: 4px;
+  padding:  0 10px;
+  color: rgba(255, 0, 0, 0.514);
+
+}
+.dangerItem p{
+  font-size: 12px;
+  letter-spacing: 0.9px;
+  color: gray;
+}
 .setting_text_input,
 .collaborator_select {
   color: black;
@@ -58,7 +176,9 @@
 }
 
 .collaborator_name {
-  color: orangered !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  color: var(--primary_color) !important;
   letter-spacing: 1px;
 }
 .collaborator_email {
@@ -80,14 +200,14 @@
 .access_time_box_item {
   height: 60px;
   align-items: flex-end;
-  border-bottom: 0.4px solid rgba(68, 67, 67, 0.384);
+  border-bottom: 0.4px solid rgba(128, 128, 128, 0.374);
   padding: 15px 0;
 
 }
 .access_time_box_item p,
 .access_time_box_item span {
   color: gray;
-  font-size: 10px !important;
+  font-size: 10px 
 }
 
 .change_access_time_box {
@@ -113,7 +233,9 @@
 
 .remove_collaborator_btn {
   height: 28px;
-  background-color: rgba(255, 0, 0, 0.596);
+  border: 1px solid rgba(255, 0, 0, 0.596);
+  color: rgba(255, 0, 0, 0.514);
+  padding: 0 10px;
   font-size: 9px;
   margin-left: 2rem;
 }
