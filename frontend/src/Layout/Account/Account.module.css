@@ -23,7 +23,10 @@
 }
 .account_primary_details_box {
   display: flex;
+  justify-content: space-between;
+  width: 50%;
   gap: 1rem;
+  
 }
 .account_primary_details_box p,
 .account_primary_details_box div {
@@ -36,12 +39,13 @@
   display: flex;
   align-items: center;
   padding: 5px 0;
-  gap: 5px;
+  gap: 8px;
 }
 .star_box p,
 .room_details_box p,
 .connectd_user p {
-  font-size: 12px;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 /* primary_details */
 
@@ -159,6 +163,16 @@
 }
 .room_name {
   font-size: 15px !important;
+}
+.username{
+  font-size: 20px !important;
+  color: var(--primary_color) !important;  
+  font-weight: bold;
+  ;
+}
+.email{
+  letter-spacing: 1px;
+  font-size: 13px !important;
 }
 .room_name {
   color: rgb(255, 68, 0) !important;

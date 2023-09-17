@@ -20,20 +20,21 @@ const Rooms = () => {
     const {getFetch} =useFetch()
 
     useEffect(()=>{
+      
         getFetch(getUserRoomApi,[userId],(err,data)=>{
             if(err)return;
             setAllRooms(data)
         })
-    },[refresh])
+    },[refresh,userId])
 
 
     return (
         <div className={styles.rooms}>
             <Header img={"https://img.icons8.com/officel/40/null/slack.png"} name={"Created Rooms"} >
-                <button className={styles.filterBtn}>
+                {/* <button className={styles.filterBtn}>
                     <BiFilter className={styles.filter_icon} size={"2rem"} />
                     Filter Rooms
-                </button>
+                </button> */}
                 <CreateRoomModal>
 
                 <button className={styles.create_room}>

@@ -29,7 +29,7 @@ function App() {
             <Route path='invite' element={<Invite />} />
             <Route path='chats' element={<Chats />} />
             <Route path='notification' element={<Notifications />} />
-            <Route path='account' element={<Account />} />
+            <Route path='account/:userId' element={<Account />} />
             <Route path='' index element={<UploadFile />} />
           </Route>
         </Routes>

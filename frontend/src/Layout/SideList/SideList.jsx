@@ -1,7 +1,9 @@
 import React from 'react'
 import styles from "./SideList.module.css"
-import { Link } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+import { useSelector } from 'react-redux'
 const SideList = () => {
+    const {user} = useSelector(state=>state.user)
     return (
         <div className={styles.sideList}>
             <Link to="rooms">
@@ -18,7 +20,7 @@ const SideList = () => {
                     <p>Settings</p>
                 </div>
             </Link> */}
-            <Link to={"account"}>
+            <Link to={`account/${user?._id}`}>
                 <div className={styles.sideItem}>
                     <img className={styles.sideItem_profileImg} src={"/assets/images/user.png"} alt="fileUploadImg" />
                     <p>Account</p>

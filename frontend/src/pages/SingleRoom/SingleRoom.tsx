@@ -11,12 +11,14 @@ import { getRoomByIdApi } from '../../utils/api'
 import { AiFillSetting } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { State } from '../../redux/Reducers'
+import { RoomType } from '../../utils/Types'
 
 const SingleRoom = () => {
   const {id} = useParams()
   const {getFetch}  = useFetch();
-  const [roomData,setRoomData] =useState(null)
+  const [roomData,setRoomData] =useState<RoomType | null>(null)
   const {refresh} = useSelector((state:State)=>state.other)
+  const {user} = useSelector((state:State)=>state.user)
 
 
   useEffect(()=>{
@@ -59,9 +61,13 @@ const SingleRoom = () => {
  )
           }
 </AvatarGroup>
-<Link to={"settings"}>
+{
+
+
+  user?._id === roomData?.user?._id &&  <Link to={"settings"}>
 <AiFillSetting/>
 </Link>
+}
                 </div>
                     <p className={styles.infoText}>Edited - {format(roomData?.updatedAt)}</p>
 
@@ -70,7 +76,11 @@ const SingleRoom = () => {
             </div>
 
         </div>
-        <RoomsAssets/>
+      
+
+          <RoomsAssets/>
+
+        
 
     </div>
   )
