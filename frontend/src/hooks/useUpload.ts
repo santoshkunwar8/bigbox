@@ -29,7 +29,6 @@ const useUploadImage=()=>{
             "Content-Type":"multipart/form-data"
         },
         onUploadProgress:(e:AxiosProgressEvent)=>{
-
             if(e.total){
                 let loaded = Math.round((100*e?.loaded)/e.total);
               if(cb)
@@ -54,3 +53,4 @@ return {upload};
 
 }
 export default useUploadImage;
+

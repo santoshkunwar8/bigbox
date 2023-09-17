@@ -23,7 +23,7 @@ class UserController{
           const {email,password:loginPw}  = req.body;
           try {
 
-            if(!username || !loginPw){
+            if(!email || !loginPw){
               throw new Error("invalid credentials")
             }
 
@@ -34,6 +34,7 @@ class UserController{
             res.status(200).json({message:other,success:true})
 
           } catch (error) {
+            console.log(error)
               next(error)
           }
         }

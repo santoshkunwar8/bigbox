@@ -3,6 +3,19 @@ const RoomModel = require("../../models/RoomModel/RoomModel")
 
 class RoomController{
 
+    async countUserRoom(req,res,next){
+        const {userId} = req.params;
+        try {
+           const publicRoom =  await RoomModel.find({user:userId,isPublic:true}).count()
+           const privateRoom = await RoomModel.find({user:userId,isPublic:false}).count()
+
+            res.status(200).json({message:{public:publicRoom,private:privateRoom}})
+
+        } catch (error) {
+            console.log(error)
+            next(error)
+        }
+    }
 
     // add room 
         async createRoom(req,res,next){
@@ -21,9 +34,6 @@ class RoomController{
         async getRoom(req,res,next){
 
         const query = req.query;
-
-        
-
         try {
             const rooms = await RoomModel.find({...query}).populate(["user","collaborators"]);
             return res.status(200).json({message:rooms,success:true})
@@ -113,6 +123,8 @@ class RoomController{
             next(err)
         }
     }
+
+   
 
 }
 module.exports = new RoomController()

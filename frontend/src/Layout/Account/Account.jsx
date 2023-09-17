@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from '../Header/Header'
 import styles from "./Account.module.css"
+import { getUsersRoomCountApi } from '../../utils/api'
 
 
 const Account = () => {
+    const {user} = useSelector((state)=>state.user);
+    const [roomCount,setRoomCount] = useState({
+        public:0,
+        private:0
+    })
+    const getRoomsCountOfUser=async()=>{
+        if(!user?._id)return;
+        try {
+               const {data,status} = await  getUsersRoomCountApi(user?._id)
+               if(status===200){
+                    setRoomCount(data.message)
+               }
+              
+        } catch (error) {
+                console.log(error)
+        }
+    }
     return (
         <div
             className={styles.Account_box}>
@@ -16,24 +34,21 @@ const Account = () => {
                     <div className={styles.account_primary_details_box}>
 
                         <div className={styles.primary_details}>
-                            <p>Santosh kunwar</p>
-                            <p>santoshkunwar9454@gmail.com</p>
+                            <p>{user?.username}</p>
+                            <p>{user?.email}</p>
                             <div className={styles.user_description}> hey !! i am a software developer by profession</div>
 
                         </div>
                         <div className={styles.secondary_details}>
                             <div className={styles.room_details_box}>
                                 <img width={"20px"} src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
-                                <p>27 rooms</p>
+                                <p>{parseInt(roomCount.private) + parseInt(roomCount.public)} rooms</p>
                             </div>
                             <div className={styles.star_box}>
                                 <img width={"20px"} src="https://img.icons8.com/fluency/48/null/filled-star.png" />
                                 <p>72 stars</p>
                             </div>
-                            <div className={styles.connectd_user}>
-                                <img width={"20px"} src="https://img.icons8.com/stickers/100/null/share-2.png" />
-                                <p>connected with 11 users</p>   </div>
-
+           
                         </div>
 
 
@@ -53,12 +68,12 @@ const Account = () => {
                                 <p className={styles.room_main_text}>You have 27 rooms all together</p>
                                 <div className={`${styles.room_type_info_box} `}>
                                     <img width={"30px"} src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/null/external-global-freelancer-xnimrodx-lineal-color-xnimrodx-2.png" />
-                                    <p className={`${styles.global_room}`}>12 public</p>
+                                    <p className={`${styles.global_room}`}>{roomCount.public} public</p>
                                 </div>
                                 <div className={styles.room_type_info_box} >
                                     <img width={"30px"} src="https://img.icons8.com/external-flaticons-flat-flat-icons/64/null/external-private-key-privacy-flaticons-flat-flat-icons-2.png" />
 
-                                    <p className={styles.private_room}>15 private</p>
+                                    <p className={styles.private_room}>{roomCount.private} private</p>
                                 </div>
                             </div>
                             <div className={styles.room_list}>

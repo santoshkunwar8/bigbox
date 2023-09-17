@@ -20,10 +20,17 @@ export const addUserAsCollaboratorApi=(roomId:string,user:string)=>axiosInstance
 export const updateRoomApi = (roomId:string,data:any)=>axiosInstance.put(`/room/${roomId}`,data)
 export const deleteRoomApi=(roomId:string)=>axiosInstance.delete(`/room/${roomId}`)
 export const removeCollaboratorApi=(roomId:string,userId:string)=>axiosInstance.post(`/room/removeCollaborator/${roomId}`,{user:userId})
+export const getUsersRoomCountApi=(userId:string)=>axiosInstance.get(`/room/count/${userId}`)
+
+
+
 // user endpoints
 export const searchUserByNameApi=((search:string)=>axiosInstance.get(`/user?search_query=${search}`))
 export const searchUserByIdApi = ((userId:string)=>axiosInstance.get(`/user?userId=${userId}`))
-export const loginApi = (data)=>axiosInstance.post(`/`)
+export const loginApi = (data)=>axiosInstance.post(`/user/login`,data)
+export const registerApi=(data)=>axiosInstance.post(`/user/register`,data)
+
+
 
 
 

@@ -13,13 +13,14 @@
   import { useEffect, useState } from 'react'
   import {useDispatch} from "react-redux"
 import { actionCreators } from '../../../redux'
+import { loginApi, registerApi } from '../../../utils/api'
 
 
   function SignUpModal({children}) {
     const [activeTab,setActiveTab] =useState("login")
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch =useDispatch()
-    const {addUserAction} = bindActionCreators(actionCreators,dispatch)
+    const {AddUserAction} = bindActionCreators(actionCreators,dispatch)
 
     const [authData,setAuthData] = useState({
     username:"",
@@ -54,14 +55,14 @@ import { actionCreators } from '../../../redux'
 
         const res = await loginApi(authData)
         if(res.status===200){
-          addUserAction(res.data.message)
+          AddUserAction(res.data.message)
         }else{
           throw res.data.message
         }        
       }else {
       const res =   await  registerApi(authData)
              if(res.status===200){
-          addUserAction(res.data.message)
+          AddUserAction(res.data.message)
         }else{
           throw res.data.message
         }   
@@ -75,7 +76,7 @@ import { actionCreators } from '../../../redux'
 
     return (
       <>
-        <span style={{height:"100%"}} onClick={onOpen}>{children}</span>
+        <span  onClick={onOpen}>{children}</span>
   
         <Modal  isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
