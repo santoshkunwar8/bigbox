@@ -1,4 +1,4 @@
-const { createUser, getUser, updateUser, deleteUser, searchUser, loginUser } = require("../controllers/UserController/UserController");
+const { createUser, getUser, updateUser, deleteUser, searchUser, loginUser, sessionUser } = require("../controllers/UserController/UserController");
 
 const router = require("express").Router()
 
@@ -7,6 +7,7 @@ router.post("/login",loginUser)
 router.get("/",searchUser)
 router.put("/:id",updateUser)
 router.delete("/:id",deleteUser)
+router.get("/sessionUser",sessionUser)
 
 
 

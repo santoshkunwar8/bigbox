@@ -10,6 +10,7 @@ export type Usertype={
 
 
 export type RoomType={
+    _id:string,
     name:string,
     collaborators:Usertype[],
     isPublic:boolean,

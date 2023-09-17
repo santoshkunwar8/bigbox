@@ -6,26 +6,35 @@ const SideList = () => {
     const {user} = useSelector(state=>state.user)
     return (
         <div className={styles.sideList}>
-            <Link to="rooms">
+               <Link to="public">
                 <div className={styles.sideItem}>
                     <img src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
-                    <p>Rooms</p>
+                    <p>Public Rooms</p>
 
                 </div>
             </Link>
           
-            {/* <Link to={"settings"}>
+            {
+
+             user &&  <>
+             
+             
+            <Link to="rooms">
                 <div className={styles.sideItem}>
-                    <img src="https://img.icons8.com/plasticine/100/null/gear.png" alt='settingImg' />
-                    <p>Settings</p>
+                   <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/change-user-male.png" alt="change-user-male"/>
+                    <p>My Rooms</p>
+
                 </div>
-            </Link> */}
-            <Link to={`account/${user?._id}`}>
+            </Link>
+             
+             <Link to={`account/${user?._id}`}>
                 <div className={styles.sideItem}>
                     <img className={styles.sideItem_profileImg} src={"/assets/images/user.png"} alt="fileUploadImg" />
                     <p>Account</p>
                 </div>
             </Link>
+             </>
+            }
 
         </div>
     )

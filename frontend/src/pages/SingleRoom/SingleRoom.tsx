@@ -64,7 +64,7 @@ const SingleRoom = () => {
 {
 
 
-  user?._id === roomData?.user?._id &&  <Link to={"settings"}>
+  user?._id === roomData?.user?._id &&   <Link to={"settings"}>
 <AiFillSetting/>
 </Link>
 }

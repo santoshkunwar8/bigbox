@@ -31,10 +31,7 @@ const Rooms = () => {
     return (
         <div className={styles.rooms}>
             <Header img={"https://img.icons8.com/officel/40/null/slack.png"} name={"Created Rooms"} >
-                {/* <button className={styles.filterBtn}>
-                    <BiFilter className={styles.filter_icon} size={"2rem"} />
-                    Filter Rooms
-                </button> */}
+                
                 <CreateRoomModal>
 
                 <button className={styles.create_room}>

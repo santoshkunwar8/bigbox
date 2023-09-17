@@ -124,7 +124,16 @@ class RoomController{
         }
     }
 
-   
+   async getPublicRooms(req,res){
+    try {
+            const rooms = await RoomModel.find({isPublic:true}).populate(["user","collaborators"]);
+            res.status(200).json({message:rooms,success:true})
+
+    } catch (error) {
+            console.log(error)
+            new(error)
+    }
+   }
 
 }
 module.exports = new RoomController()

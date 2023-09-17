@@ -18,6 +18,14 @@ class UserController{
             next(error)
         }
         }
+        async sessionUser(req,res,next){
+          const sessionUser  = req.session.user; 
+          if(sessionUser){
+            res.status(200).json({message:sessionUser,success:true})
+          }else{
+            res.status(500).json({message:"User is not logged In",success:false})
+          }
+        }
 
         async loginUser(req,res,next){
           const {email,password:loginPw}  = req.body;
@@ -31,6 +39,7 @@ class UserController{
             if(!user) throw new Error("invalid credentails");
             const {password,...other} = user._doc;
             if(password!==loginPw) throw new Error("invalid credentails");
+            req.session.user= other;
             res.status(200).json({message:other,success:true})
 
           } catch (error) {
