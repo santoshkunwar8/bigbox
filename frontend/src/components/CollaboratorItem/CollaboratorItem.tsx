@@ -5,8 +5,13 @@ import { useParams } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../redux';
 import { useDispatch } from 'react-redux';
+import { RoomType, Usertype } from '../../utils/Types';
 
-const CollaboratorItem = ({user}) => {
+type collaboratorItemType={
+    user:Usertype,
+    roomData:RoomType|null,
+}
+const CollaboratorItem:React.FC<collaboratorItemType> = ({user ,roomData}) => {
 
     const {id} = useParams();
     const dispatch = useDispatch()
@@ -40,11 +45,11 @@ const CollaboratorItem = ({user}) => {
                                 </div>
                             </div>
           
-                            <div className={"remove_collaborator"}>
+                          {  roomData &&   roomData.user._id !== user._id && <div className={"remove_collaborator"}>
                                 <button className={"remove_collaborator_btn"} onClick={handleRemoveCollaborator}>
                                     Remove
                                 </button>
-                            </div>
+                            </div>}
 
                         </CollaboratorItemWrapper>
   )

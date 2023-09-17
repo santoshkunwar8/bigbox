@@ -19,6 +19,25 @@ class UserController{
         }
         }
 
+        async loginUser(req,res,next){
+          const {email,password:loginPw}  = req.body;
+          try {
+
+            if(!username || !loginPw){
+              throw new Error("invalid credentials")
+            }
+
+            const user = await UserModel.findOne({email});
+            if(!user) throw new Error("invalid credentails");
+            const {password,...other} = user._doc;
+            if(password!==loginPw) throw new Error("invalid credentails");
+            res.status(200).json({message:other,success:true})
+
+          } catch (error) {
+              next(error)
+          }
+        }
+
      
 
         async searchUser(req, res) {

@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from "./Navbar.module.css"
 import { RiLoginCircleFill } from "react-icons/ri"
+import SignUpModal from '../modal/Auth/Auth'
 const Navbar = () => {
     return (
         <div className={styles.navbar}>
@@ -11,7 +12,10 @@ const Navbar = () => {
                 </div> */}
             </div>
             <div className={styles.navRight}>
-                <button className={styles.navBtn} > <RiLoginCircleFill size={"1.4rem"} />  SIGN UP</button>
+           <SignUpModal>
+            
+              <button className={styles.navBtn} > <RiLoginCircleFill size={"1.4rem"} />  SIGN UP</button>
+            </SignUpModal>   
             </div>
         </div>
     )

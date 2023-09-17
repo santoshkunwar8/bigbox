@@ -23,7 +23,7 @@ export const removeCollaboratorApi=(roomId:string,userId:string)=>axiosInstance.
 // user endpoints
 export const searchUserByNameApi=((search:string)=>axiosInstance.get(`/user?search_query=${search}`))
 export const searchUserByIdApi = ((userId:string)=>axiosInstance.get(`/user?userId=${userId}`))
-
+export const loginApi = (data)=>axiosInstance.post(`/`)
 
 
 

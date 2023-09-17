@@ -122,28 +122,11 @@ const Settings = () => {
                         <div className={styles.collaboratorsList}>
                             {
                                 roomData &&  searchCollabName.length > 0 ? filteredCollab.map(u=>(
-                                     <div  key={u._id} className={styles.access_time_box_item}>
-                            <div className={styles.collaborator_main_info_box}>
+                               
 
+                                        <CollaboratorItem   roomData={roomData} user={u} key={u._id}/>
 
-                                <img className={styles.collaborator_img} src={u.image} />
-                                <div className={styles.collaborator_details}>
-                                    <p className={styles.collaborator_name}>{u.username}</p>
-                                    <span className={styles.collaborator_email}>{u.email}</span>
-                                </div>
-                            </div>
-          
-                            <div className={styles.remove_collaborator}>
-
-                                <button className={styles.remove_collaborator_btn}>
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                                )): roomData?.collaborators.map(user=> <CollaboratorItem user={user} key={user._id}/>)
+                                )): roomData?.collaborators.map(user=> <CollaboratorItem  roomData={roomData} user={user} key={user._id}/>)
                             }
                                    
                   

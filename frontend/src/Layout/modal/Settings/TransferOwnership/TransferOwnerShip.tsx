@@ -25,7 +25,7 @@ export const  TransferOwnerShip:React.FC<ChangeVisibilityType>=({children,roomDa
 
 
   useEffect(()=>{
-        // roomData?.collaborators.filter(u=>u. )
+    // roomData?.collaborators.filter(u=>u. )
   },[])
 
     const {id} = useParams()
