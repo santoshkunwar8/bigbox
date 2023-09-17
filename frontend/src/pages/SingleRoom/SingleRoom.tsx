@@ -9,11 +9,14 @@ import moment from "moment"
 import { format } from 'timeago.js'
 import { getRoomByIdApi } from '../../utils/api'
 import { AiFillSetting } from 'react-icons/ai'
+import { useSelector } from 'react-redux'
+import { State } from '../../redux/Reducers'
 
 const SingleRoom = () => {
   const {id} = useParams()
   const {getFetch}  = useFetch();
   const [roomData,setRoomData] =useState(null)
+  const {refresh} = useSelector((state:State)=>state.other)
 
 
   useEffect(()=>{
@@ -25,7 +28,7 @@ const SingleRoom = () => {
       setRoomData(data[0])
 
     })
-  },[id])
+  },[id,refresh])
 
 
   return (

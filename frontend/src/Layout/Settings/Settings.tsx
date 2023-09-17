@@ -10,6 +10,8 @@ import { actionCreators } from '../../redux'
 import { useDispatch } from 'react-redux'
 import { ChangeVisibility } from '../modal/Settings/ChangeVisibilty/ChangeVisbility'
 import { DeleteRoomModal } from '../modal/Settings/DeleteRoom/DeleteRoom'
+import { TransferOwnerShip } from '../modal/Settings/TransferOwnership/TransferOwnerShip'
+import CollaboratorItem from '../../components/CollaboratorItem/CollaboratorItem'
 type settingDataType={
     name:string,
     isPublic:boolean,
@@ -29,7 +31,7 @@ const Settings = () => {
         user:"",
         name:""
     })
-
+    
 
     useEffect(()=>{
         getFetch(getRoomByIdApi,[id],(err,data)=>{
@@ -141,29 +143,7 @@ const Settings = () => {
 
                         </div>
 
-                                )): roomData?.collaborators.map(u=> (
-
-                                    <div  key={u._id} className={styles.access_time_box_item}>
-                            <div className={styles.collaborator_main_info_box}>
-
-
-                                <img className={styles.collaborator_img} src={u.image} />
-                                <div className={styles.collaborator_details}>
-                                    <p className={styles.collaborator_name}>{u.username}</p>
-                                    <span className={styles.collaborator_email}>{u.email}</span>
-                                </div>
-                            </div>
-          
-                            <div className={styles.remove_collaborator}>
-
-                                <button className={styles.remove_collaborator_btn}>
-                                    Remove
-                                </button>
-
-                            </div>
-
-                        </div>
-                                ))
+                                )): roomData?.collaborators.map(user=> <CollaboratorItem user={user} key={user._id}/>)
                             }
                                    
                   
@@ -186,13 +166,15 @@ const Settings = () => {
                             <button>Change visibility</button>
                             </ChangeVisibility>
                         </div>
-                          <div className={styles.dangerItem}>
+                          {/* <div className={styles.dangerItem}>
                             <div className={styles.dangerItemLeft}>
                                 <p className={styles.dangerItemHeader}>Transfer ownership</p>
                                 <p >Transfer this room  to another user or to an organization .</p>
                             </div>
+                            <TransferOwnerShip roomData={roomData}>
                             <button>Transfer</button>
-                        </div>
+                            </TransferOwnerShip>
+                        </div> */}
                         
                          <div className={styles.dangerItem}>
                             <div className={styles.dangerItemLeft}>

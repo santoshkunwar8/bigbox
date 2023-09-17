@@ -97,5 +97,22 @@ class RoomController{
         }
     }
 
+
+    async removeCollaborator(req,res,next){
+        const {id} = req.params;
+        const {user} = req.body;
+        try{
+           const updated =   await RoomModel.findByIdAndUpdate(id,{
+                $pull:{collaborators:user}
+            },{
+                new:true,
+                returnDocument:true
+            })
+            res.status(200).json({message:updated,success:true})
+        }catch(err){
+            next(err)
+        }
+    }
+
 }
 module.exports = new RoomController()
