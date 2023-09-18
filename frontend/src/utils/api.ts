@@ -30,7 +30,7 @@ export const searchUserByIdApi = ((userId:string)=>axiosInstance.get(`/user?user
 export const loginApi = (data)=>axiosInstance.post(`/user/login`,data)
 export const registerApi=(data)=>axiosInstance.post(`/user/register`,data)
 export const getSessionUserApi=()=>axiosInstance.get(`/user/sessionUser`)
-
+export const logoutApi = () =>axiosInstance.post(`/user/logout`)
 
 
 

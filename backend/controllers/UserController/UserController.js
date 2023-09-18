@@ -48,7 +48,22 @@ class UserController{
           }
         }
 
-     
+        async logoutUser(req,res,next){
+          try {
+            
+            req.session.destroy((err)=>{
+              if(err){
+                throw new Error("failed to logged out")
+                
+              }
+              res.clearCookie("wrapfile.sid")
+              res.status(200).json({message:"logged out successfully",success:true})
+            })
+          } catch (error) {
+            next(error)
+            
+          }
+        }
 
         async searchUser(req, res) {
 
