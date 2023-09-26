@@ -1,7 +1,7 @@
 const FileModel = require("../../models/FileModel/FileModel")
 const RoomModel = require("../../models/RoomModel/RoomModel")
 
-
+const cloudinary = require("../../utils/setup/cloudinary")
 
 
 
@@ -74,6 +74,44 @@ class FileControllers{
             await FileModel.deleteOne({_id:id})
             return res.status(200).json({message:"successfully deleted",success:true})
         } catch (error) {
+            next(error)
+        }
+    }
+
+    async getFileUrl(req,res,next){
+        const {data,type} = req.body
+
+        try {
+            if(type==="image"){
+            const uploadResponse = await cloudinary.uploader.upload(data, {
+             upload_preset: "wrapfileImg",
+            });
+             res.status(200).json({message:uploadResponse.secure_url,success:true})
+
+
+            }else if(type==="video"){
+
+            const uploadResponse = await cloudinary.uploader.upload(data, {
+            resource_type: "video",   
+             upload_preset: "wrapfileVideo",
+            })
+
+             res.status(200).json({message:uploadResponse.secure_url,success:true})
+
+
+            }else if(type==="application"){
+                 const uploadResponse = await cloudinary.uploader.upload(data, {
+                    
+             upload_preset: "wrapfileApplication",
+            })
+
+             res.status(200).json({message:uploadResponse.secure_url,success:true})
+
+ 
+            }
+            
+        } catch (error) {
+            console.log(error)
             next(error)
         }
     }

@@ -24,7 +24,7 @@ const SideList = () => {
             </Link>
              <Link to={`account/${user?._id}`}>
                 <div className={styles.sideItem}>
-                    <Avatar size={"sm"}  name={user.username} src={user?.image} />
+                <Avatar size={"sm"}  name={user.username} src={user?.image} />
                     <p>Account</p>
                 </div>
             </Link>

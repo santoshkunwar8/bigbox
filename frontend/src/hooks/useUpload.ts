@@ -1,8 +1,9 @@
 import axios ,{AxiosProgressEvent}from "axios"
 
 
-const cloudName ="dbnsmuyu6"
-const presetKey="wrapfile"
+const cloudName ="codewithmama"
+const presetKeyForImg="wrapfileImg"
+const presetKeyForVideos = "wrapfileVideo"
 
 interface CallBack{
   (progress:number,url:string):void
@@ -15,10 +16,18 @@ const useUploadImage=()=>{
 
 
     
-   const upload=async(file:File,cb?:CallBack):Promise<ReturnType>=>{
+   const upload=async(file:File,mediaType:string,cb?:CallBack):Promise<ReturnType>=>{
         
+        console.log(mediaType);
+
         const formData = new FormData()
         formData.append("file",file)
+        let presetKey;
+        if(mediaType==="image" || mediaType==="application"){
+            presetKey = presetKeyForImg;
+        }else if(mediaType==="video"){
+            presetKey = presetKeyForVideos;
+        }
         formData.append("upload_preset",presetKey)
     try {
     const res = await  axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,formData,{

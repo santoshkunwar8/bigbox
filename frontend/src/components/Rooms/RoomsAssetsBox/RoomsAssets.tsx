@@ -15,6 +15,7 @@ const RoomsAssets = () => {
   const {id} = useParams();
   const [filesArr,setFilesArr] =useState(null)
   const {refresh} = useSelector((state:State)=>state.other)
+      const {user}  = useSelector((state)=>state.user);
 
   const {getFetch} = useFetch()
 useEffect(()=>{
@@ -27,7 +28,8 @@ useEffect(()=>{
   return (
     <div className={styles.roomAssets}>
       <div className={styles.filecontainer}>
-      <UploadFileModal>
+   {
+    user &&  <UploadFileModal>
 
       <div className={styles.uploadItem}>
 
@@ -36,6 +38,7 @@ useEffect(()=>{
 
       </div>
       </UploadFileModal>
+   }  
 
             {
               filesArr  ? filesArr.map(file=><FileItem file={file}/>) :"LOADING....."

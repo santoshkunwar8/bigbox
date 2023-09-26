@@ -7,72 +7,45 @@ import {
 import React, { ChangeEvent, useRef, useState } from 'react'
 import { UploadFileModalWrapper } from './UploadFileModal.styles'
 import PreviewFiles from './previewFiles/PreviewFiles'
-import useUploadImage from '../../../hooks/useUpload'
 import useFetch from '../../../hooks/useFetch'
 import {useParams}from "react-router-dom"
-import { addFileApi } from '../../../utils/api'
+import { addFileApi, getFileUrlApi } from '../../../utils/api'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../../redux'
-import { useDispatch } from 'react-redux'
-import {ConstantVar}  from "../../../utils/enums"
+import { useDispatch, useSelector } from 'react-redux'
+
 type UploadFileModalPropsType={
     children:React.ReactNode
 }
 const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
   const {id} = useParams()
-  const currentUser= "64f7e688fea8a219d4d481eb"
+  const {user}  = useSelector((state)=>state.user);
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [files,setFiles] = useState<File[]>([]);
+  const [files,setFiles] = useState<File |null>(null);
   const [progressPer,setProgressPer] = useState(0)
   const [isUploading,setIsUploading]=useState(false)
-
+  const {postFetch} = useFetch()
   const dispatch = useDispatch()
   const { RefreshAction} = bindActionCreators(actionCreators,dispatch)
   const inputElmRef:React.MutableRefObject<HTMLInputElement|null> = useRef(null)
+
   const handleFile=(e:ChangeEvent<HTMLInputElement>)=>{ 
-    console.log(e.target.files)
     if(e.target.files){
-      let newFile= [...e.target.files]
-      setFiles(prev=>([
-        ...prev,...newFile
-      ]))
+      setFiles(e.target.files[0])
+      
     }
 
   }
-  const {upload}= useUploadImage()
-  const {postFetch} = useFetch();
 
-
-
-  const handleRemoveFile=(file:File)=>{
-
-    setFiles(prev=>{
-      return prev.filter(fl=>fl.name !== file.name)
-    })
-
-
-  }
-  const uploadPhotos=()=>{
-    setIsUploading(true)
-    let totalSize= files.reduce((t,fl)=>   t + fl.size,0);
-    console.log("total size",totalSize/1024);
-    files.forEach((f,no)=>{
-      console.log("running for file",no+1)
-      upload(f,(progress,url)=>{
-
-        // calculating the progress
-        let currProgress = (no * 100) + progress ;
-      
   
-        setProgressPer(currProgress);
-        if(url){
-          addFileToDB(f,url,no+1)
-        }
-      })
-    })
-  }  
+ 
+  
+  const handleRemoveFile=()=>{
+    setFiles(null)
+  }
 
-  const addFileToDB=async(file:File,url:string,no:number)=>{
+  const addFileToDB=async(file:File,url:string)=>{
     const type = file.type.split("/")[0]
     const filePayload={
       user:currentUser,
@@ -85,12 +58,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
     try {
         await postFetch(addFileApi,filePayload,(err,data)=>{
           if(err)return;
-          if(no=== files.length){ 
-            onClose()
-            setIsUploading(false)
-            RefreshAction()
-            setFiles([])
-          }
+         
         })
     } catch (error) {
       console.log(error)
@@ -99,12 +67,36 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
     
   }
 
+  const handleGetFileUrl=()=>{
+    if(!files || !user)return
+     const reader:FileReader = new FileReader();
+     const [type] = files?.type.split("/")
+      reader.readAsDataURL(files);
+      reader.onloadend=async()=>{
+        let url = reader.result;
+        if(url){
+         const {status,data} =    await getFileUrlApi(url,type);
+         if(status===200){  
+          const imgUrl = data.message;
+          addFileToDB(files,imgUrl);
+          onClose()
+         }  
+        }
+      }
+
+      reader.onerror=()=>{
+        console.log("some error while reading file");
+      }
+
+  
+  }
+
 
   return (
     <>
       <span onClick={onOpen} >{children}</span>
 
-      <Modal isOpen={isOpen}  onClose={()=>{setFiles([]);onClose()}}>
+      <Modal isOpen={isOpen}  onClose={()=>{setFiles(null);onClose()}}>
         <ModalOverlay />
         <ModalContent>
             <UploadFileModalWrapper>
@@ -114,9 +106,9 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                     </div>
                 
                     <div className="imageWrapper">
-                    {
-                      files.map(file=><PreviewFiles key={file.name}  handleRemoveFile={handleRemoveFile} file={file}/>)
-                    }
+                  
+                {  files && <PreviewFiles   handleRemoveFile={handleRemoveFile} file={files}/>}
+                    
                     </div>
                   { isUploading && <div className="progressBox">
 
@@ -133,11 +125,11 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                  <p> 
 
                  {
-                   files.length>0? "Add More" :"Choose File"
+                  "Choose File"
                   }
                   </p>
                 </div>
-                   <div className={`browseButton uploadFile ${files.length > 0 ? "enable":""}`} onClick={uploadPhotos}>
+                   <div className={`browseButton uploadFile ${files ? "enable":""}`} onClick={handleGetFileUrl}>
                  <p> 
 
                   Upload File

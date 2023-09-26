@@ -44,7 +44,7 @@ function App() {
             <Route path='rooms' element={<Rooms />} />
             <Route path='public' element={<AllRooms/>} />
             <Route path='rooms/:id' element={<RoomOutlet/>} >
-             <Route path='' element={<SingleRoom/>}/>
+            <Route path='' element={<SingleRoom/>}/>
             <Route path='settings' element={<Settings />} />
             </Route>
             <Route path='account/:userId' element={<Account />} />

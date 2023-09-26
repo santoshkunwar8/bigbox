@@ -39,3 +39,6 @@ export const logoutApi = () =>axiosInstance.post(`/user/logout`)
 
 export const getFilebyRoomId=(roomId:string)=>axiosInstance.get(`/file?room=${roomId}`)
 export const addFileApi=(data:FileUploadPayload)=>axiosInstance.post(`/file/create`,data)
+export const getFileUrlApi=(data:any,type:string)=>axiosInstance.post(`/file/getFileUrl`,{data,type})
+
+
