@@ -1,8 +1,8 @@
 import axios ,{AxiosProgressEvent}from "axios"
 
 
-const cloudName ="onlinecoder"
-const presetKey="sharefile"
+const cloudName ="dbnsmuyu6"
+const presetKey="wrapfile"
 
 interface CallBack{
   (progress:number,url:string):void
@@ -16,15 +16,12 @@ const useUploadImage=()=>{
 
     
    const upload=async(file:File,cb?:CallBack):Promise<ReturnType>=>{
-
-
         
         const formData = new FormData()
         formData.append("file",file)
         formData.append("upload_preset",presetKey)
     try {
     const res = await  axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,formData,{
-        
         headers:{
             "Content-Type":"multipart/form-data"
         },

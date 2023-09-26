@@ -1,13 +1,17 @@
 import React from 'react'
 import { RoomListWrapper } from './RoomLIst.styles'
 import { useNavigate } from 'react-router-dom'
+import {format} from "timeago.js"
 
 const RoomList = ({room}) => {
     const navigate = useNavigate()
     const handleNavigate =()=>{
         if(room?._id)
         navigate(`/home/rooms/${room?._id}`)
-    }
+    };
+
+
+
   return (
             <RoomListWrapper className={"room_item"} onClick={handleNavigate}>
                                     <div className={"room_title_box"}>
@@ -25,7 +29,7 @@ const RoomList = ({room}) => {
                                     </div>
                                     <div className={"updated"}>
                                         <p>last updated :</p>
-                                        <span>3 hours ago</span>
+                                        <span>{format(room.updatedAt)}</span>
 
                                     </div>
                                 </RoomListWrapper>

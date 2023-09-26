@@ -68,11 +68,7 @@ const Account = () => {
                                 <img width={"20px"} src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
                                 <p>{parseInt(roomCount.private) + parseInt(roomCount.public)} rooms</p>
                             </div>
-                            {/* <div className={styles.star_box}>
-                                <img width={"20px"} src="https://img.icons8.com/fluency/48/null/filled-star.png" />
-                                <p>72 stars</p>
-                            </div>
-            */}
+                  
                         </div>
                     
 

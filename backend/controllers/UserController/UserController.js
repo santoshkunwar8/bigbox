@@ -10,16 +10,14 @@ class UserController{
         try {
 
             let newUser  =    await UserModel.create(req.body);
-          
             return res.status(200).json({message:newUser,success:true});
-
-
         } catch (error) {
             next(error)
         }
         }
         async sessionUser(req,res,next){
           const sessionUser  = req.session.user; 
+          console.log(sessionUser)
           if(sessionUser){
             res.status(200).json({message:sessionUser,success:true})
           }else{
