@@ -6,7 +6,7 @@ const useFetch = () => {
  const getFetch=async(endpointApi,params,cb)=>{
 
     try {
-        const {status,data} = await endpointApi([...params]);
+        const {status,data} = await endpointApi(...params);
         if(status===200){
             cb(null,data.message);
         }else{

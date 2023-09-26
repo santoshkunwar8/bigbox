@@ -67,8 +67,9 @@ class UserController{
 
         async searchUser(req, res) {
 
-            const { userId } = req.query;
+            const { userId ,ignoreId} = req.query;
             let keyword = {};
+
             try {
               if (!userId) {
                 keyword = req.query.search_query
@@ -80,6 +81,7 @@ class UserController{
                       
                         { email: { $regex: req.query.search_query, $options: "i" } },
                       ],
+                      _id:{$ne:ignoreId}
                     }
                   : {};
               } else {

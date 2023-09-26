@@ -16,7 +16,7 @@ import { createRoomApi, searchUserByNameApi } from '../../../utils/api';
 import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/SearchSelectedUsers';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../../redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { ConstantVar } from '../../../utils/enums';
   type CreateRoomModalProps={
     children:React.ReactNode,
@@ -29,7 +29,7 @@ import { ConstantVar } from '../../../utils/enums';
   export const  CreateRoomModal:React.FC<CreateRoomModalProps>=({children})=> {
 
 
-
+        const {user}  = useSelector((state)=>state.user);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [userInput,setUserInput] =useState("");
     const [ selelctedCollaborator,setSelectedCollaborator]=useState<Usertype[]>([]);
@@ -45,12 +45,10 @@ import { ConstantVar } from '../../../utils/enums';
       collaborators:[],
       isPublic:false
     })
-    console.log(debatePayload)
-    const currentUser = "64f7e688fea8a219d4d481eb";
     useEffect(()=>{
       
       
-      getFetch(searchUserByNameApi,[userInput],(err,data)=>{
+      getFetch(searchUserByNameApi,[userInput,user?._id],(err,data)=>{
         if(err)return;
         setSearchedUsers(data)
       })
@@ -105,19 +103,17 @@ import { ConstantVar } from '../../../utils/enums';
       const {value} = e.target;
       setDebatePayload(prev=>({...prev,name:value}))
     }
-
-
     const handleCreateRoom=(e:SyntheticEvent)=>{
       e.preventDefault();
 
       const payload = {
         ...debatePayload,
-        collaborators:[...debatePayload.collaborators,currentUser]
+        collaborators:[...debatePayload.collaborators,user?._id]
       };
 
     try {
 
-      postFetch(createRoomApi,{...payload,user:currentUser},(err,data)=>{
+      postFetch(createRoomApi,{...payload,user:user?._id},(err,data)=>{
         if(err)return ;
         onClose()
         RefreshAction()
@@ -188,4 +184,6 @@ import { ConstantVar } from '../../../utils/enums';
         </Modal>
       </>
     )
+
+    
   }

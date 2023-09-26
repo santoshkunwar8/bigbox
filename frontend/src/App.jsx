@@ -44,14 +44,9 @@ function App() {
             <Route path='rooms' element={<Rooms />} />
             <Route path='public' element={<AllRooms/>} />
             <Route path='rooms/:id' element={<RoomOutlet/>} >
-              <Route path='' element={<SingleRoom/>}/>
+             <Route path='' element={<SingleRoom/>}/>
             <Route path='settings' element={<Settings />} />
             </Route>
-            {/* <Route path='files' element={<Files />} />
-            <Route path='invite' element={<Invite />} />
-            <Route path='chats' element={<Chats />} />
-            <Route path='notification' element={<Notifications />} />
-            <Route path=''  element={<UploadFile />} /> */}
             <Route path='account/:userId' element={<Account />} />
           </Route>
         </Routes>

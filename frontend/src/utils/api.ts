@@ -25,7 +25,7 @@ export const getAllPublicRoomApi =()=>axiosInstance.get('/room/public')
 
 
 // user endpoints
-export const searchUserByNameApi=((search:string)=>axiosInstance.get(`/user?search_query=${search}`))
+export const searchUserByNameApi=((search:string,ignoreId:string)=>axiosInstance.get(`/user?search_query=${search}&ignoreId=${ignoreId??""}`))
 export const searchUserByIdApi = ((userId:string)=>axiosInstance.get(`/user?userId=${userId}`))
 export const loginApi = (data)=>axiosInstance.post(`/user/login`,data)
 export const registerApi=(data)=>axiosInstance.post(`/user/register`,data)

@@ -56,7 +56,7 @@
 
 .userInfo{
   display: flex;
-  gap: 5px;;
+  gap: 10px;;
 }
 .userInfo img{
   width: 50px;
@@ -74,4 +74,10 @@
 .username{
   font-weight: bold;
   text-transform: capitalize;
+}
+
+.avatarImg{
+  border: 2px solid var(--primary_color) !important;
+  padding: 4px !important ;
+
 }

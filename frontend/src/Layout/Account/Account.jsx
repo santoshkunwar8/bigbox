@@ -7,6 +7,7 @@ import useFetch from '../../hooks/useFetch'
 import { useParams } from 'react-router-dom'
 import RoomItem from '../../components/Rooms/RoomItem/RoomItem'
 import RoomList from '../../components/RoomList/RoomList'
+import { Avatar } from '@chakra-ui/react'
 
 
 const Account = () => {
@@ -53,7 +54,7 @@ const Account = () => {
 
                 <div className={styles.account_personal_details}>
 
-                    <img className={styles.user_profile_img} src={user?.image} alt="" />
+                    <Avatar className={styles.accountImg} size={"lg"} name={user?.username} src={user?.image}/>
                     <div className={styles.account_primary_details_box}>
 
                         <div className={styles.primary_details}>
