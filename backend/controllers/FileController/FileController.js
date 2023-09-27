@@ -100,9 +100,10 @@ class FileControllers{
 
 
             }else if(type==="application"){
+                console.log("raw")
                  const uploadResponse = await cloudinary.uploader.upload(data, {
-                    
-             upload_preset: "wrapfileApplication",
+                resource_type:"raw", 
+                 upload_preset: "wrapfileApplication",
             })
 
              res.status(200).json({message:uploadResponse.secure_url,success:true})

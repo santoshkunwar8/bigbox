@@ -48,7 +48,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
   const addFileToDB=async(file:File,url:string)=>{
     const type = file.type.split("/")[0]
     const filePayload={
-      user:currentUser,
+      user:user?._id,
       size:file.size,
       room:id,
       type,
@@ -68,6 +68,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
   }
 
   const handleGetFileUrl=()=>{
+
     if(!files || !user)return
      const reader:FileReader = new FileReader();
      const [type] = files?.type.split("/")
