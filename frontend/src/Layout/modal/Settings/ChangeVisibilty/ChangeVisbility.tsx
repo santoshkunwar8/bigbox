@@ -6,7 +6,7 @@ import {
 } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { RoomType } from '../../../../utils/Types'
-import { ConstantVar } from '../../../../utils/enums'
+import  {ConstantVar} from "../../../../utils/Enums";
 import { ChangeVisibilityWrapper } from './ChangeVisibility.styles'
 import { updateRoomApi } from '../../../../utils/api'
 import { useParams } from 'react-router-dom'

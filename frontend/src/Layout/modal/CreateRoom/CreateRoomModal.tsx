@@ -17,7 +17,7 @@ import SearchSelectedUsers from '../../../components/User/SearchSelectedUsers/Se
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { ConstantVar } from '../../../utils/enums';
+import { ConstantVar } from "../../../utils/Enums";
   type CreateRoomModalProps={
     children:React.ReactNode,
   }
