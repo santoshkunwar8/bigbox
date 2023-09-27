@@ -1,8 +1,9 @@
 .navbar {
-  height: 100px;
+  height: 90px;
   width: 100%;
   align-items: center;
   display: flex;
+  /* background-color: #21213e3d; */
   padding: 0 1.4rem;
 }
 .navLeft {

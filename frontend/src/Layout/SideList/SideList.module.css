@@ -1,19 +1,43 @@
 .sideList {
-  /* border-right: 2px solid rgb(43, 42, 42); */
   flex: 2.5;
   display: flex;
-  height: 100%;
+  height: calc(100vh - 56px);
   flex-direction: column;
+  background-color: #21213e3d;
+  border-radius: 10px;
+  border: 1px solid rgba(48, 48, 48, 0.156); ;
+}
+.logoBox{
+  height: 90px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 1rem;
+}
+.logoBox img{
+  width: 40px;
+  height: 40px;
+}
+.logoText{
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 .sideItem {
+  border: 1px solid  rgba(48, 48, 48, 0.156);
+  gap: 1rem;
+  border-right: none;
+  border-left: none;
+  height: 80px;
+  font-size: 14px;
   padding-left: 1rem;
   display: flex;
   cursor: pointer;
-  gap: 1rem;
+  cursor: pointer;
   align-items: center;
-  font-size: 14px;
-  height: 60px;
-  /* border-bottom: 0.1px solid rgb(43, 42, 42); */
+}
+.activeSideItem{
+  background-color: rgba(44, 44, 44, 0.137);
 }
 .sideItem:hover {
   background-color: rgba(44, 44, 44, 0.137);
@@ -27,4 +51,29 @@
 }
 .sideItem_profileImg {
   border-radius: 50%;
+}
+.loginButton{
+  border: 1px solid rgba(48, 48, 48, 0.156);
+    gap: 1rem;
+    height: 80px;
+    font-size: 14px;
+    padding-left: 1rem;
+    display: flex;
+    cursor: pointer;
+    cursor: pointer;
+    align-items: center;
+    width: 100%;
+}
+.loginButton img{
+  width: 30px;
+  height: 30px;
+}
+.loginButton p{
+  color: gray;
+    letter-spacing: 0.7px;
+}
+.loginButton:hover {
+  cursor: pointer;
+  background-color: rgba(44, 44, 44, 0.137);
+
 }

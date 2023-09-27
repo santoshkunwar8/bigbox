@@ -5,11 +5,13 @@
 .homeContentWrapper {
   display: flex;
   width: 100%;
+  gap: 1rem;
+  padding: 2rem;
   padding-bottom: 0;
 }
 .mainContent {
   flex: 9.5;
   height: 100%;
   min-height: 80vh;
-  padding: 1rem;
+  /* padding: 1rem; */
 }

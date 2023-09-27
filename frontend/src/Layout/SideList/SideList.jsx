@@ -3,10 +3,16 @@ import styles from "./SideList.module.css"
 import { Link, useParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { Avatar } from '@chakra-ui/react'
+import SignUpModal from '../modal/Auth/Auth'
 const SideList = () => {
     const {user} = useSelector(state=>state.user)
     return (
+
         <div className={styles.sideList}>
+            <div className={styles.logoBox}>
+                <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/layers.png" alt="layers"/>
+                <h2 className={styles.logoText}>Wrapfile</h2>   
+            </div>
                <Link to="public">
                 <div className={styles.sideItem}>
                     <img src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
@@ -30,6 +36,15 @@ const SideList = () => {
             </Link>
              </>
             }
+            {
+                !user &&   <SignUpModal>
+                    <button className={styles.loginButton}>
+                        <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/lock--v1.png" alt="lock--v1"/>
+                        <p>Login</p>
+                    </button>
+            </SignUpModal>
+            }
+
         </div>
     )
 }

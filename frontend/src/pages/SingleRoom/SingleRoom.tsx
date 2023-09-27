@@ -57,7 +57,7 @@ const SingleRoom = () => {
                     <AvatarGroup size='sm' max={3}>
            
           {
-            roomData?.collaborators?.map(cb=>            <Avatar key={cb?._id}  name={cb.username} src={cb.image} />
+            roomData?.collaborators?.map(cb=> <Avatar key={cb?._id}  name={cb.username} src={cb.image} />
  )
           }
 </AvatarGroup>

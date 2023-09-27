@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../Header/Header'
 import styles from "./Account.module.css"
-import {useSelector} from "react-redux"
-import { getUserRoomApi, getUsersRoomCountApi } from '../../utils/api'
+import {useDispatch, useSelector} from "react-redux"
+import { getUserRoomApi, getUsersRoomCountApi, logoutApi } from '../../utils/api'
 import useFetch from '../../hooks/useFetch'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import RoomItem from '../../components/Rooms/RoomItem/RoomItem'
 import RoomList from '../../components/RoomList/RoomList'
 import { Avatar } from '@chakra-ui/react'
+import { bindActionCreators } from 'redux'
+import { actionCreators } from '../../redux'
 
 
 const Account = () => {
     const {user} = useSelector((state)=>state.user);
     const {refresh} = useSelector((state)=>state.other);
+    const navigate = useNavigate()
+    const dispatch =useDispatch()
+    const {AddUserAction} = bindActionCreators(actionCreators,dispatch)
+
     const {userId}= useParams()
     const [rooms,setAllRooms] = useState([])
     const [roomCount,setRoomCount] = useState({
@@ -24,6 +30,19 @@ const Account = () => {
         getRoomsCountOfUser()
     },[user])
 
+
+    const handleLogout=async()=>{
+        try {
+              const { status } =   await logoutApi();
+              if(status===200){
+                AddUserAction(null)
+                navigate("/home/public")
+              }
+        } catch (error) {
+          console.log(error)  
+        }
+
+    }
 
     useEffect(()=>{
         getFetch(getUserRoomApi,[userId],(err,data)=>{
@@ -39,12 +58,10 @@ const Account = () => {
                if(status===200){
                     setRoomCount(data.message)
                }
-              
         } catch (error) {
                 console.log(error)
         }
     }
-
 
     return (
         <div
@@ -61,9 +78,9 @@ const Account = () => {
                             <p className={styles.username}>{user?.username}</p>
                             <p className={styles.email}>{user?.email}</p>
                             <div className={styles.user_description}> hey !! i am a software developer by profession</div>
-
+                                <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
                         </div>
-            <div className={styles.secondary_details}>
+                         <div className={styles.secondary_details}>
                             <div className={styles.room_details_box}>
                                 <img width={"20px"} src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
                                 <p>{parseInt(roomCount.private) + parseInt(roomCount.public)} rooms</p>
@@ -85,7 +102,7 @@ const Account = () => {
                         </div>
                         <div>
                             <div>
-                                <p className={styles.room_main_text}>You have {parseInt(roomCount?.private) + parseInt(roomCount?.public)} rooms all together</p>
+                            {/* <p className={styles.room_main_text}>You have {parseInt(roomCount?.private) + parseInt(roomCount?.public)} rooms all together</p> */}
                                 <div className={`${styles.room_type_info_box} `}>
                                     <img width={"30px"} src="https://img.icons8.com/external-xnimrodx-lineal-color-xnimrodx/64/null/external-global-freelancer-xnimrodx-lineal-color-xnimrodx-2.png" />
                                     <p className={`${styles.global_room}`}>{roomCount.public} public</p>

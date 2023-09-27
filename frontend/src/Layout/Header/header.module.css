@@ -1,7 +1,11 @@
 .roomHeader {
   display: flex;
-  margin-bottom: 2rem;
   justify-content: space-between;
+  background-color: #21213e3d;
+  height: 90px;;
+  border-radius: 10px;
+  padding: 0 1rem;
+border: 1px solid rgba(48, 48, 48, 0.156);
 }
 .roomHeader h2 {
   color:#ffffff;

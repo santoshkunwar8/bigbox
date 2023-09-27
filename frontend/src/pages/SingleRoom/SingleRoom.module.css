@@ -1,11 +1,17 @@
 .singleRoom{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1rem;
 }
 .roomHeader{
     display: flex;
     justify-content: space-between;
+    background-color: #21213e3d;
+    height: 100px;
+    align-items: center;
+    padding: 0 1rem;
+    border-radius: 10px;
+    border: 1px solid  rgba(48, 48, 48, 0.156);;
 }
 .roomName{
     font-size: 1.5rem;
