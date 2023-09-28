@@ -10,6 +10,7 @@ import RoomList from '../../components/RoomList/RoomList'
 import { Avatar } from '@chakra-ui/react'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../redux'
+import useAlert from '../../hooks/useAlert'
 
 
 const Account = () => {
@@ -18,7 +19,7 @@ const Account = () => {
     const navigate = useNavigate()
     const dispatch =useDispatch()
     const {AddUserAction} = bindActionCreators(actionCreators,dispatch)
-
+    const {alert} =useAlert()
     const {userId}= useParams()
     const [rooms,setAllRooms] = useState([])
     const [roomCount,setRoomCount] = useState({
@@ -36,6 +37,7 @@ const Account = () => {
               const { status } =   await logoutApi();
               if(status===200){
                 AddUserAction(null)
+                     alert("success",'Logout successfull')
                 navigate("/home/public")
               }
         } catch (error) {

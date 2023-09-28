@@ -14,12 +14,14 @@
   import {useDispatch} from "react-redux"
 import { actionCreators } from '../../../redux'
 import { loginApi, registerApi } from '../../../utils/api'
+import useAlert from '../../../hooks/useAlert'
 
 
   function SignUpModal({children}) {
     const [activeTab,setActiveTab] =useState("login")
     const { isOpen, onOpen, onClose } = useDisclosure();
     const dispatch =useDispatch()
+    const {alert}  = useAlert()
     const {AddUserAction} = bindActionCreators(actionCreators,dispatch)
 
     const [authData,setAuthData] = useState({
@@ -56,20 +58,24 @@ import { loginApi, registerApi } from '../../../utils/api'
         const res = await loginApi(authData)
         if(res.status===200){
           AddUserAction(res.data.message)
+            alert("success",'Login  successfull')
         }else{
           throw res.data.message
         }        
       }else {
       const res =   await  registerApi(authData)
              if(res.status===200){
+
+          alert("success",'Signup  successfull')
           AddUserAction(res.data.message)
         }else{
           throw res.data.message
         }   
       }
     } catch (error) {
-
+      
       console.log(error)
+      alert("error",error?.response?.data?.message)
     }
 
   }

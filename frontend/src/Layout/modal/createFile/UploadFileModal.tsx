@@ -13,6 +13,7 @@ import { addFileApi, getFileUrlApi } from '../../../utils/api'
 import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../../redux'
 import { useDispatch, useSelector } from 'react-redux'
+import useAlert from '../../../hooks/useAlert'
 
 type UploadFileModalPropsType={
     children:React.ReactNode
@@ -27,6 +28,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
   const [isUploading,setIsUploading]=useState(false)
   const {postFetch} = useFetch()
   const dispatch = useDispatch()
+  const {alert} =useAlert()
   const { RefreshAction} = bindActionCreators(actionCreators,dispatch)
   const inputElmRef:React.MutableRefObject<HTMLInputElement|null> = useRef(null)
 
@@ -55,10 +57,12 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
       url,
       name:file.name,
     }
+    
     try {
         await postFetch(addFileApi,filePayload,(err,data)=>{
           if(err)return;
-         
+          RefreshAction();
+          alert("success","File uploaded successfully")
         })
     } catch (error) {
       console.log(error)
