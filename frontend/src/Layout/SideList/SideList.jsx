@@ -1,11 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "./SideList.module.css"
-import { Link, useParams } from "react-router-dom"
+import { Link, useLocation, useParams } from "react-router-dom"
 import { useSelector } from 'react-redux'
 import { Avatar } from '@chakra-ui/react'
 import SignUpModal from '../modal/Auth/Auth'
 const SideList = () => {
     const {user} = useSelector(state=>state.user)
+    const [activeSideItem,setActiveSideItem] =useState("public")
+    const  location  =useLocation()
+
+
+    useEffect(()=>{
+        const [intial,page,path]  = location.pathname.split("/")
+
+        setActiveSideItem(path)
+        
+        
+    },[location ])
+    console.log(activeSideItem)
     return (
 
         <div className={styles.sideList}>
@@ -14,7 +26,7 @@ const SideList = () => {
                 <h2 className={styles.logoText}>Wrapfile</h2>   
             </div>
                <Link to="public">
-                <div className={styles.sideItem}>
+                <div className={`${styles.sideItem} ${activeSideItem==="public" ? styles.activeItem:""}`}>
                     <img src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
                     <p>Public Rooms</p>
 
@@ -23,13 +35,13 @@ const SideList = () => {
             {
              user &&  <>
             <Link to="rooms">
-                <div className={styles.sideItem}>
+                 <div className={`${styles.sideItem} ${activeSideItem==="rooms" ? styles.activeItem:""}`}>
                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/change-user-male.png" alt="change-user-male"/>
                     <p>My Rooms</p>
                 </div>
             </Link>
              <Link to={`account/${user?._id}`}>
-                <div className={styles.sideItem}>
+                <div className={`${styles.sideItem} ${activeSideItem==="account" ? styles.activeItem:""}`}>
                 <Avatar size={"sm"}  name={user.username} src={user?.image} />
                     <p>Account</p>
                 </div>

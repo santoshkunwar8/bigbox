@@ -36,11 +36,17 @@
   cursor: pointer;
   align-items: center;
 }
-.activeSideItem{
-  background-color: rgba(44, 44, 44, 0.137);
+
+.activeItem{
+  /* background-color: rgba(44, 44, 44, 0.137); */
+  background-color: #6161ff3b ;
+}
+.activeItem p{
+  color: white !important;
+
 }
 .sideItem:hover {
-  background-color: rgba(44, 44, 44, 0.137);
+  background-color: #6161ff17;
 }
 .sideItem p {
   color: gray;
@@ -77,3 +83,4 @@
   background-color: rgba(44, 44, 44, 0.137);
 
 }
+

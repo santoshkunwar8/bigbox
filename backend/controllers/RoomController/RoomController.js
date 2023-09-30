@@ -126,8 +126,43 @@ class RoomController{
 
    async getPublicRooms(req,res){
     try {
-            const rooms = await RoomModel.find({isPublic:true}).populate(["user","collaborators"]);
-            res.status(200).json({message:rooms,success:true})
+
+
+      const allRooms = await   RoomModel.aggregate([
+        {
+            $match:{
+                isPublic:true
+            }
+        },  
+
+   {
+    $lookup: {
+      from: "files", // Name of your files collection
+      localField: "_id",
+      foreignField: "room",
+      as: "files",
+    },
+   },
+   {
+    $unwind: {
+      path: "$files",
+      preserveNullAndEmptyArrays: true,
+    },
+  },
+  {
+    $group: {
+      _id: "$_id",
+      name: { $first: "$name" },
+      user: { $first: "$user" },
+      isPublic: { $first: "$isPublic" },
+      collaborators: { $first: "$collaborators" },
+      totalSize: { $sum: "$files.size" },
+    },
+  },
+])
+
+        res.status(200).json({message:allRooms,success:true})
+
 
     } catch (error) {
             console.log(error)
