@@ -44,7 +44,9 @@ function App() {
             <Route path='rooms' element={<Rooms />} />
             <Route path='public' element={<AllRooms/>} />
             <Route path='rooms/:id' element={<RoomOutlet/>} >
-            <Route path='' element={<SingleRoom/>}/>
+            <Route path='public' element={<SingleRoom  backItem="Public"/>}/>
+            <Route path='private' element={<SingleRoom  backItem="Private"/>}/>
+            <Route path='rooms' element={<SingleRoom backItem={"My Room"}/>}/>
             <Route path='settings' element={<Settings />} />
             </Route>
             <Route path='account/:userId' element={<Account />} />

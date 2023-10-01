@@ -123,7 +123,8 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                     
                   </div>
                     </div>}
-                  <input multiple type="file"  style={{display:"none"}} ref={inputElmRef} onChange={handleFile} />
+                  <input multiple type="file" accept='.jpg, .jpeg, .png, .mp4 , .webp , .webm , .pdf'  style={{display:"none"}} ref={inputElmRef} onChange={handleFile} />
+                  <p className="supportedText"> Supported format : png , webp , jpeg , pdf , mp4 , webm</p>
                     <div className="buttonWrapper">
 
                 <div className="browseButton" onClick={(e)=>inputElmRef.current?.click()}>

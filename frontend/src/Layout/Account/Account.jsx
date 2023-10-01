@@ -80,13 +80,14 @@ const Account = () => {
                             <p className={styles.username}>{user?.username}</p>
                             <p className={styles.email}>{user?.email}</p>
                             <div className={styles.user_description}> hey !! i am a software developer by profession</div>
-                                <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
-                        </div>
+                            <button className={styles.logoutButton} onClick={handleLogout}>Logout</button>
+                           </div>
+                           
                          <div className={styles.secondary_details}>
-                            <div className={styles.room_details_box}>
+                            {/* <div className={styles.room_details_box}>
                                 <img width={"20px"} src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
                                 <p>{parseInt(roomCount.private) + parseInt(roomCount.public)} rooms</p>
-                            </div>
+                            </div> */}
                   
                         </div>
                     
@@ -98,10 +99,7 @@ const Account = () => {
                 <div className={styles.secondary_details_container}>
 
                     <div className={styles.account_rooms}>
-                        <div className={styles.account_section_header}>
-                            <img width={"28px"} src="https://img.icons8.com/officel/40/null/slack.png" alt='roomIcon' />
-                            <h2>ROOMS</h2>
-                        </div>
+                        
                         <div>
                             <div>
                             {/* <p className={styles.room_main_text}>You have {parseInt(roomCount?.private) + parseInt(roomCount?.public)} rooms all together</p> */}

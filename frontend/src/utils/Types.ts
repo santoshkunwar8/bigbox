@@ -14,5 +14,18 @@ export type RoomType={
     name:string,
     collaborators:Usertype[],
     isPublic:boolean,
-    user:Usertype
+    user:Usertype,
+    createdAt?:string,
+    updatedAt?:string,
+
+
+}
+
+export type FileTye={
+    _id:string,
+    name:string,
+    type:string,
+    size:number,
+    user:string, 
+    room:string,
 }

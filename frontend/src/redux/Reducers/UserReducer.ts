@@ -1,8 +1,12 @@
+import { Usertype } from "../../utils/Types";
 import { Action } from "../Action";
 import { ActionTypes } from "../Action/ActionTypes";
 
+type initialStateType={
+    user:null | Usertype
 
-const initialState={
+}
+const initialState:initialStateType={
     user:null
 }
 

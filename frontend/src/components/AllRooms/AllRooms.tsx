@@ -4,6 +4,8 @@ import { RoomType } from '../../utils/Types'
 import { getAllPublicRoomApi } from '../../utils/api'
 import Header from '../../Layout/Header/Header'
 import RoomItem from '../Rooms/RoomItem/RoomItem'
+import { CreateRoomModal } from '../../Layout/modal/CreateRoom/CreateRoomModal'
+import { MdCreateNewFolder } from 'react-icons/md'
 
 const AllRooms = () => {
     const [ allRooms,setAllRooms] =useState<RoomType[] | null>(null)
@@ -25,8 +27,13 @@ const AllRooms = () => {
     <AllRoomsWrapper>
          <Header img={"https://img.icons8.com/officel/40/null/slack.png"} name={"Public Rooms"} >
                 
-                
 
+     <CreateRoomModal>
+
+                <button className={"create_room"}>
+                    <MdCreateNewFolder size={"1.62rem"} className={"create_btn"} />   Create
+                </button>
+                </CreateRoomModal>
            
             </Header>
             <div className="allRoomsWrapper">

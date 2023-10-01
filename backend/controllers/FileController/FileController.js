@@ -82,7 +82,7 @@ class FileControllers{
         const {data,type} = req.body
 
         try {
-            if(type==="image"){
+            if(type==="image" || type==="application"){
             const uploadResponse = await cloudinary.uploader.upload(data, {
              upload_preset: "wrapfileImg",
             });
@@ -95,20 +95,10 @@ class FileControllers{
             resource_type: "video",   
              upload_preset: "wrapfileVideo",
             })
+            
+            res.status(200).json({message:uploadResponse.secure_url,success:true})
 
-             res.status(200).json({message:uploadResponse.secure_url,success:true})
 
-
-            }else if(type==="application"){
-                console.log("raw")
-                 const uploadResponse = await cloudinary.uploader.upload(data, {
-                resource_type:"raw", 
-                 upload_preset: "wrapfileApplication",
-            })
-
-             res.status(200).json({message:uploadResponse.secure_url,success:true})
-
- 
             }
             
         } catch (error) {
@@ -119,3 +109,15 @@ class FileControllers{
 
 }
 module.exports= new FileControllers()
+
+// else if(type==="application"){
+//                 console.log("raw")
+//                  const uploadResponse = await cloudinary.uploader.upload(data, {
+//                 resource_type:"raw", 
+//                  upload_preset: "wrapfileApplication",
+//             })
+
+//              res.status(200).json({message:uploadResponse.secure_url,success:true})
+
+ 
+//             }

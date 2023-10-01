@@ -1,11 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Room.module.css";
 import {format} from "timeago.js"
 import { Avatar, AvatarGroup } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 const RoomItem = ({room}) => {
+
+
+    const location = useLocation()
+    const [path,setPath] =useState();
+    
+
+
+
+    useEffect(()=>{
+            const pathname = location.pathname;
+            let name = pathname.split("/")[2]
+            setPath(name);
+            
+
+    },[location])
+
+
     return (
-        <Link to={`../rooms/${room?._id}`} className={styles.room}>
+        <Link to={`../rooms/${room?._id}/${path}`} className={styles.room}>
            
             <div className={styles.room_details}>
                 <div className={styles.details_header}>
@@ -20,14 +38,14 @@ const RoomItem = ({room}) => {
                               <AvatarGroup size="xs" max={3}>
            
           {
-              room?.collaborators?.map(cb=>            <Avatar borderColor={"#646cff"} key={cb?._id}  name={cb.username} src={cb.image} />
+              room?.collaborators?.map(cb=><Avatar borderColor={"#646cff"} key={cb?._id}  name={cb.username} src={cb.image} />
               )
             }
 </AvatarGroup>
             </div>
                 </div>
                 <div className={styles.details_top}>
-                    <span className={styles.size}>1.2GB used</span>
+                    <span className={styles.size}>{(room.totalSize/1024/1024/1024).toFixed(5)} GB used</span>
                     <div className={styles.updatedTime} >
                         <p>Collaborators : &nbsp; </p> <span>{room.collaborators?.length}</span>
                     </div>

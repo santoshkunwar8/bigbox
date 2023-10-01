@@ -10,7 +10,6 @@ const iconMap={
 }
 
 const FileItem = ({file}) => {
-  console.log(file)
   const handleOpenFile=()=>{
     window.open(file.url)
   }

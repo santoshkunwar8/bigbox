@@ -17,7 +17,8 @@ const SideList = () => {
         
         
     },[location ])
-    console.log(activeSideItem)
+
+
     return (
 
         <div className={styles.sideList}>

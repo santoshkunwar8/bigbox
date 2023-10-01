@@ -8,22 +8,18 @@ import { AiOutlineCloudUpload } from 'react-icons/ai';
 import UploadFileModal from '../../../Layout/modal/createFile/UploadFileModal';
 import { useSelector } from 'react-redux';
 import { State } from '../../../redux/Reducers';
+import { FileTye } from '../../../utils/Types';
 
+type roomAssetsPropsType = {
+  filesArr:FileTye[] |null
+}
 
-const RoomsAssets = () => {
+const RoomsAssets:React.FC<roomAssetsPropsType> = ({filesArr}) => {
 
   const {id} = useParams();
-  const [filesArr,setFilesArr] =useState(null)
-  const {refresh} = useSelector((state:State)=>state.other)
-      const {user}  = useSelector((state)=>state.user);
+  const {user}  = useSelector((state)=>state.user);
 
-  const {getFetch} = useFetch()
-useEffect(()=>{
-    getFetch(getFilebyRoomId,[id],(err,data)=>{
-      if(err)return;
-      setFilesArr(data)
-    })
-  },[id,refresh])
+  
 
   return (
     <div className={styles.roomAssets}>

@@ -4,11 +4,12 @@ export const UploadFileModalWrapper = styled.div`
 width:100%;
 background:#151515;
 min-height:200px;
-padding:2rem;
+padding:1rem;
 display:flex;
 flex-direction:column;
 align-items:center;
 gap:1.4rem;
+border-radius:5px;
 
 .uploadFileHeader{
     display:flex;
@@ -56,6 +57,11 @@ gap:1.4rem;
             width:25%;
         }
     }
+}
+.supportedText{
+    color:gray;
+    font-size:12px;
+    letter-spacing:1px;
 }
 .buttonWrapper{
     width:100%;

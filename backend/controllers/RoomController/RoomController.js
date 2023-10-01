@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const RoomModel = require("../../models/RoomModel/RoomModel")
 
 
@@ -31,16 +32,61 @@ class RoomController{
         }
         }
 
-        async getRoom(req,res,next){
 
-        const query = req.query;
+
+
+        async getRoom(req,res,next){
+            const {user ,room,_id} = req.query
+            const roomQuery = {}
+            if(user){
+                roomQuery.user =  new  mongoose.Types.ObjectId(user)
+            }else if(room){
+                 roomQuery.room =  new  mongoose.Types.ObjectId(room)
+            }else if(_id){
+                roomQuery._id = new  mongoose.Types.ObjectId(_id)
+            }
+            console.log(roomQuery)
+
+            
         try {
-            const rooms = await RoomModel.find({...query}).populate(["user","collaborators"]);
-            return res.status(200).json({message:rooms,success:true})
-        } catch (error) {
+
+      let  allRooms = await   RoomModel.aggregate([
+        {
+            $match:{
+                ...roomQuery
+            }
+        },  
+         {
+        $lookup: {
+          from: "files", // Name of your files collection
+         localField: "_id",
+         foreignField: "room",
+         as: "files",
+         },
+         },
+         {
+        $unwind: {
+          path: "$files",
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+     {
+      $group: {
+        _id: "$_id",
+      name: { $first: "$name" },
+      user: { $first: "$user" },
+      isPublic: { $first: "$isPublic" },
+      collaborators: { $first: "$collaborators" },
+      totalSize: { $sum: "$files.size" },
+     },
+     },
+     ])
+   allRooms = await RoomModel.populate(allRooms, { path: "collaborators" });
+    res.status(200).json({message:allRooms,success:true})
+           } catch (error) {
             next(error)
-        }
-        }
+      }
+     }
 
 
         // update room 
@@ -128,28 +174,28 @@ class RoomController{
     try {
 
 
-      const allRooms = await   RoomModel.aggregate([
+      let  allRooms = await   RoomModel.aggregate([
         {
             $match:{
                 isPublic:true
             }
         },  
 
-   {
-    $lookup: {
-      from: "files", // Name of your files collection
-      localField: "_id",
-      foreignField: "room",
-      as: "files",
+    {
+     $lookup: {
+          from: "files", // Name of your files collection
+         localField: "_id",
+         foreignField: "room",
+         as: "files",
     },
    },
    {
-    $unwind: {
-      path: "$files",
-      preserveNullAndEmptyArrays: true,
+        $unwind: {
+          path: "$files",
+          preserveNullAndEmptyArrays: true,
     },
-  },
-  {
+     },
+     {
     $group: {
       _id: "$_id",
       name: { $first: "$name" },
@@ -158,15 +204,16 @@ class RoomController{
       collaborators: { $first: "$collaborators" },
       totalSize: { $sum: "$files.size" },
     },
-  },
-])
+    },
+    ])
 
-        res.status(200).json({message:allRooms,success:true})
+    allRooms = await RoomModel.populate(allRooms, { path: "collaborators" });
+    res.status(200).json({message:allRooms,success:true})
 
 
     } catch (error) {
             console.log(error)
-            new(error)
+            next(error)
     }
    }
 

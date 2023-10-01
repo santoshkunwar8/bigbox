@@ -13,8 +13,23 @@
     border-radius: 10px;
     border: 1px solid  rgba(48, 48, 48, 0.156);;
 }
+.roomNameBox{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+
+}
+.backName{
+    text-decoration: underline;
+}
+.roomNameBox svg{
+    font-size: 1.6rem;
+    fill: var(--primary_color);
+}
 .roomName{
     font-size: 1.5rem;
+    cursor: pointer;
     font-weight:600;
     letter-spacing: 1px;
     color: var(--primary_color);
