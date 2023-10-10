@@ -42,3 +42,7 @@ export const addFileApi=(data:FileUploadPayload)=>axiosInstance.post(`/file/crea
 export const getFileUrlApi=(data:any,type:string)=>axiosInstance.post(`/file/getFileUrl`,{data,type})
 
 
+
+
+
+
