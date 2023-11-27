@@ -14,13 +14,14 @@ import { bindActionCreators } from 'redux'
 import { actionCreators } from '../../../redux'
 import { useDispatch, useSelector } from 'react-redux'
 import useAlert from '../../../hooks/useAlert'
+import { State } from '../../../redux/Reducers'
 
 type UploadFileModalPropsType={
     children:React.ReactNode
 }
 const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
   const {id} = useParams()
-  const {user}  = useSelector((state)=>state.user);
+  const {user}  = useSelector((state:State)=>state.user);
   
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [files,setFiles] = useState<File |null>(null);
@@ -62,10 +63,11 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
         await postFetch(addFileApi,filePayload,(err,data)=>{
           if(err)return;
           RefreshAction();
+          setFiles(null)
           alert("success","File uploaded successfully")
         })
+        setIsUploading(false)
     } catch (error) {
-      console.log(error)
       setIsUploading(false)
     }
     
@@ -74,6 +76,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
   const handleGetFileUrl=()=>{
 
     if(!files || !user)return
+    setIsUploading(true)
      const reader:FileReader = new FileReader();
      const [type] = files?.type.split("/")
       reader.readAsDataURL(files);
@@ -90,18 +93,20 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
       }
 
       reader.onerror=()=>{
+        setIsUploading(false)
         console.log("some error while reading file");
       }
 
   
   }
 
+  console.log(isUploading,"uploading")
 
   return (
     <>
       <span onClick={onOpen} >{children}</span>
 
-      <Modal isOpen={isOpen}  onClose={()=>{setFiles(null);onClose()}}>
+      <Modal isOpen={isOpen}   onClose={()=>{ if(!isUploading){ setFiles(null);onClose()}}}>
         <ModalOverlay />
         <ModalContent>
             <UploadFileModalWrapper>
@@ -114,17 +119,20 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                   
                 {  files && <PreviewFiles   handleRemoveFile={handleRemoveFile} file={files}/>}
                     
-                    </div>
-                  { isUploading && <div className="progressBox">
+                    </div >
+                  { isUploading ? <div className="progressBox">
 
-                    <p>{progressPer}%</p>
-                  <div className="progressBar">
-                    <div className="progress" style={{width:`${progressPer}%`}}></div>
+                    <iframe src="https://lottie.host/embed/001b9309-3a98-48c6-96d4-42b13cf1b412/eDDX84yAca.json"></iframe>
+                    <p>Don't get back . Your file is uploading ... </p>
+                    </div> :
                     
-                  </div>
-                    </div>}
-                  <input multiple type="file" accept='.jpg, .jpeg, .png, .mp4 , .webp , .webm , .pdf'  style={{display:"none"}} ref={inputElmRef} onChange={handleFile} />
-                  <p className="supportedText"> Supported format : png , webp , jpeg , pdf , mp4 , webm</p>
+                    <>
+                       <input  type="file" accept='.jpg, .jpeg, .png, .mp4 , .webp , .webm , .pdf'  style={{display:"none"}} ref={inputElmRef} onChange={handleFile} />
+                  <div className="supportedText">
+                  <p>Video max 100Mb</p>
+                  <p>Image , pdf max 10Mb</p>
+                  <p>Supported format : png , webp , jpeg , pdf , mp4 , webm</p>
+                     </div>
                     <div className="buttonWrapper">
 
                 <div className="browseButton" onClick={(e)=>inputElmRef.current?.click()}>
@@ -143,6 +151,10 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                   </p>
                 </div>
                   </div>
+                    </>
+                    
+                    }
+               
             </UploadFileModalWrapper>
 
 

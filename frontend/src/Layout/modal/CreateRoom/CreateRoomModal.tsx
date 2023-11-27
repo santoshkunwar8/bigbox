@@ -18,18 +18,20 @@ import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../../redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { ConstantVar } from "../../../utils/Enums";
+import { State } from '../../../redux/Reducers';
+import useAlert from '../../../hooks/useAlert';
   type CreateRoomModalProps={
     children:React.ReactNode,
   }
   type debatePayloadType={
-    name:string,
+    name:string, 
     collaborators:string[],
     isPublic:boolean
   }
   export const  CreateRoomModal:React.FC<CreateRoomModalProps>=({children})=> {
 
 
-        const {user}  = useSelector((state)=>state.user);
+        const {user}  = useSelector((state:State)=>state.user);
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [userInput,setUserInput] =useState("");
     const [ selelctedCollaborator,setSelectedCollaborator]=useState<Usertype[]>([]);
@@ -39,7 +41,7 @@ import { ConstantVar } from "../../../utils/Enums";
     const dispatch =useDispatch()
     const {RefreshAction} = bindActionCreators(actionCreators,dispatch)
     const [accessType,setAccessType] = useState(ConstantVar.PRIVATE)
-    
+    const {alert} = useAlert()
     const [debatePayload,setDebatePayload]=useState<debatePayloadType>({
       name:"",
       collaborators:[],
@@ -115,12 +117,14 @@ import { ConstantVar } from "../../../utils/Enums";
 
       postFetch(createRoomApi,{...payload,user:user?._id},(err,data)=>{
         if(err)return ;
+        alert("success","Room created successfully")
         onClose()
         RefreshAction()
       })
       
         console.log(debatePayload)
     } catch (error) {
+          alert("error","Failed to create room")
         console.log(error)
     }
 

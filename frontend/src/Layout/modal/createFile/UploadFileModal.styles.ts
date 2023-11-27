@@ -38,10 +38,22 @@ border-radius:5px;
 }
 .progressBox{
     width:100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+
+    iframe{
+        width: 100px;
+        height: 100px;
+    }
     
     p{
         color:var(--primary_color);
         margin-bottom:5px;
+        font-size: 12px;
+        letter-spacing:0.8px;
 
 
     }
@@ -58,10 +70,16 @@ border-radius:5px;
         }
     }
 }
-.supportedText{
+.supportedText {
     color:gray;
     font-size:12px;
     letter-spacing:1px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    p{
+        color: gray;
+    }
 }
 .buttonWrapper{
     width:100%;
@@ -73,7 +91,7 @@ border-radius:5px;
 .browseButton{
     flex:1;
     width:100%;
-    height:45px;
+    height:40px;
     background:#1e1e1e;
     display:flex;
     align-items:center;

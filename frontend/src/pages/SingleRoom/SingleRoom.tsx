@@ -72,7 +72,7 @@ useEffect(()=>{
           }
                     </AvatarGroup>
           {
-        user?._id === roomData?.user?._id &&   <Link to={"settings"}>
+           <Link to={"../settings"}>
           <AiFillSetting/>
         </Link>
 }
