@@ -6,8 +6,11 @@ import Header from '../../Layout/Header/Header'
 import RoomItem from '../Rooms/RoomItem/RoomItem'
 import { CreateRoomModal } from '../../Layout/modal/CreateRoom/CreateRoomModal'
 import { MdCreateNewFolder } from 'react-icons/md'
+import { useSelector } from 'react-redux'
+import { State } from '../../redux/Reducers'
 
 const AllRooms = () => {
+    const {user} =useSelector((state:State)=>state.user)
     const [ allRooms,setAllRooms] =useState<RoomType[] | null>(null)
 
     useEffect(()=>{
@@ -28,12 +31,12 @@ const AllRooms = () => {
          <Header img={"https://img.icons8.com/officel/40/null/slack.png"} name={"Public Rooms"} >
                 
 
-     <CreateRoomModal>
+  {   user && <CreateRoomModal>
 
                 <button className={"create_room"}>
                     <MdCreateNewFolder size={"1.62rem"} className={"create_btn"} />   Create
                 </button>
-                </CreateRoomModal>
+                </CreateRoomModal>}
            
             </Header>
             <div className="allRoomsWrapper">
