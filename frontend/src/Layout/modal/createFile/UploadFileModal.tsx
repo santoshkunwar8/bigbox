@@ -110,10 +110,10 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
         <ModalOverlay />
         <ModalContent>
             <UploadFileModalWrapper>
-                    <div className="uploadFileHeader">
+                    {/* <div className="uploadFileHeader"> */}
                         {/* <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/opened-folder.png" alt="opened-folder"/> */}
-                        <h1>Upload file</h1>
-                    </div>
+                        {/* <h1>Upload file</h1> */}
+                    {/* </div> */}
                 
                     <div className="imageWrapper">
                   
@@ -127,7 +127,6 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                     </div> :
                     
                     <>
-                       <input  type="file" accept='.jpg, .jpeg, .png, .mp4 , .webp , .webm , .pdf'  style={{display:"none"}} ref={inputElmRef} onChange={handleFile} />
                   <div className="supportedText">
                   <p>Video max 100Mb</p>
                   <p>Image , pdf max 10Mb</p>
@@ -139,7 +138,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                  <p> 
 
                  {
-                  "Choose File"
+                   "Choose File"
                   }
                   </p>
                 </div>
@@ -149,6 +148,7 @@ const UploadFileModal:React.FC<UploadFileModalPropsType> = ({children}) => {
                   Upload File
                   
                   </p>
+                  <input  type="file" accept='.jpg, .jpeg, .png, .mp4 , .webp , .webm , .pdf'  style={{display:"none"}} ref={inputElmRef} onChange={handleFile} />
                 </div>
                   </div>
                     </>

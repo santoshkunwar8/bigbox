@@ -12,18 +12,15 @@ gap:1.4rem;
 border-radius:5px;
 
 .uploadFileHeader{
-    display:flex;
-    gap:10px;
-    align-items:center;
-    img{
-        width:40px;
-        height:40px;
-    }
+  
+    text-align: start !important;
+    
     h1{
         font-size:1.7rem;
         color:var(--primary_color);
         letter-spacing:1px;
         font-weight:600;
+
         text-transform:uppercase;
     }
 }
@@ -76,6 +73,7 @@ border-radius:5px;
     letter-spacing:1px;
     display: flex;
     flex-direction: column;
+    width: 100%;
     gap: 5px;
     p{
         color: gray;

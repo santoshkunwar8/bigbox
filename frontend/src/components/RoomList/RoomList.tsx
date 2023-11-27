@@ -7,7 +7,7 @@ const RoomList = ({room}) => {
     const navigate = useNavigate()
     const handleNavigate =()=>{
         if(room?._id)
-        navigate(`/home/rooms/${room?._id}`)
+        navigate(`/home/rooms/${room?._id}/rooms`)
     };
 
 

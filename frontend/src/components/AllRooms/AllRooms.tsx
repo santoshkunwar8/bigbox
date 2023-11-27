@@ -30,7 +30,6 @@ const AllRooms = () => {
     <AllRoomsWrapper>
          <Header img={"https://img.icons8.com/officel/40/null/slack.png"} name={"Public Rooms"} >
                 
-j
   {   user && <CreateRoomModal>
 
                 <button className={"create_room"}>

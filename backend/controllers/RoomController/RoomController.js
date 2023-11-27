@@ -82,6 +82,8 @@ class RoomController{
      },
      ])
    allRooms = await RoomModel.populate(allRooms, { path: "collaborators" });
+ allRooms = await RoomModel.populate(allRooms, { path: "user" }); // Populate the 'user' field
+
     res.status(200).json({message:allRooms,success:true})
            } catch (error) {
             next(error)

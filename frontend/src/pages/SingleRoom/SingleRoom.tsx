@@ -25,6 +25,9 @@ const SingleRoom = ({backItem}) => {
   const location = useLocation()
   const [path,setPath] =useState("")
 
+  console.log(roomData,user)
+
+
   useEffect(()=>{
     setPath(location.pathname.split("/")[2])
 
@@ -72,7 +75,7 @@ useEffect(()=>{
           }
                     </AvatarGroup>
           {
-           <Link to={"../settings"}>
+      roomData &&  (user?._id === roomData.user?._id )&& <Link to={"../settings"}>
           <AiFillSetting/>
         </Link>
 }
