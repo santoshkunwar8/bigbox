@@ -9,7 +9,7 @@ const session = require("express-session")
 // middlewares 
 require("dotenv").config()
 app.use(cookieParser())
-
+app.set("trust proxy", 1);
 app.use(cors({
 
     origin: [process.env.FRONTEND_URL],
@@ -19,7 +19,7 @@ app.use(cors({
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
-app.set("trust proxy", 1);
+
 app.use(morgan("common"))
 app.use(session({
     secret: process.env.SESSION_SECRET,
