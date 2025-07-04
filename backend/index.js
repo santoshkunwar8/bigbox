@@ -10,22 +10,27 @@ const session = require("express-session")
 require("dotenv").config()
 app.use(cookieParser())
 
-app.use(cors({origin:["http://localhost:5173","http://127.0.0.1:5500",process.env.FRONTEND_URL],methods:['GET','POST','DELETE','PUT'],credentials:true}))
-app.use(express.json({limit:"50mb"}));
-app.use(express.urlencoded({ limit:'50mb', extended:true}))
+app.use(cors({
 
+    origin: [process.env.FRONTEND_URL],
+    methods: ['GET', 'POST', 'DELETE', 'PUT'],
+    credentials: true
+}))
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
+app.set("trust proxy", 1);
 app.use(morgan("common"))
 app.use(session({
-    secret:process.env.SESSION_SECRET,
-    name:"bigboxx.sid",
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-        secure:true,
-        maxAge:1000*60*60,
-        httpOnly:true,
-        samesite:"None"
+    secret: process.env.SESSION_SECRET,
+    name: "bigboxx.sid",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: true,
+        maxAge: 1000 * 60 * 60,
+        httpOnly: true,
+        samesite: "None"
     }
 }))
 
@@ -34,9 +39,9 @@ app.use(session({
 require("./utils/setup/db")()
 require('./routes/index')(app);
 
-app.use((err,req,res,next)=>{
-    res.status(500).json({message:err.message,success:false})
+app.use((err, req, res, next) => {
+    res.status(500).json({ message: err.message, success: false })
 })
-            
 
-app.listen(8000,()=>console.log("server started ...."))
+
+app.listen(8000, () => console.log("server started ...."))
