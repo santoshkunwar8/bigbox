@@ -18,14 +18,14 @@ app.use(express.urlencoded({ limit:'50mb', extended:true}))
 app.use(morgan("common"))
 app.use(session({
     secret:process.env.SESSION_SECRET,
-    name:"wrapfile.sid",
+    name:"bigboxx.sid",
     resave:false,
     saveUninitialized:false,
     cookie:{
-        secure:false,
+        secure:true,
         maxAge:1000*60*60,
         httpOnly:true,
-        // samesite:"none"
+        samesite:"None"
     }
 }))
 
